@@ -14,7 +14,6 @@ public class EnemySpawner : Node2D
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
 
 
-	[Export] private NodePath rayCastPath;
 	private RayCast2D rayCast;
 	[Export] private NodePath playerPath;
 	private Player player;
@@ -31,7 +30,6 @@ public class EnemySpawner : Node2D
 			PositionOffset = new Vector2(-8, -16)
 		}
 	};
-
 	private List<EnemyType> airEnemies = new List<EnemyType>
 	{
 		new EnemyType()
@@ -51,7 +49,7 @@ public class EnemySpawner : Node2D
 
 	public override void _Ready()
 	{
-		rayCast = GetNode<RayCast2D>(rayCastPath);
+		rayCast = GetNode<RayCast2D>("RayCast2D");
 		player = GetNode<Player>(playerPath);
 	}
 

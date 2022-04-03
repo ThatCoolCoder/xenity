@@ -5,7 +5,6 @@
 [node name="EnemySpawner" type="Node2D"]
 position = Vector2( -2, 0 )
 script = ExtResource( 1 )
-rayCastPath = NodePath("RayCast2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true

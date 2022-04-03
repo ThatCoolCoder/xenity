@@ -5,10 +5,10 @@ public class Player : KinematicBody2D
 {
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
 	public Vector2 Velocity = Vector2.Zero;
-	[Export] private float maxMoveSpeed = 200;
-	[Export] private float moveAcceleration = 600;
-	[Export] private float brakingAcceleration = 600;
-	[Export] private float jumpSpeed = 300;
+	[Export] private float maxMoveSpeed = 400;
+	[Export] private float moveAcceleration = 800;
+	[Export] private float brakingAcceleration = 800;
+	[Export] private float jumpSpeed = 600;
 
 	public override void _Ready()
 	{
