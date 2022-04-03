@@ -91,6 +91,7 @@ public class EnemySpawner : Node2D
 		rayCast.GlobalPosition = rayCastPosition;
 
 		bool rayHitGround = false;
+		rayCast.ForceRaycastUpdate();
 		if (rayCast.IsColliding() && rayCast.GetCollisionPoint().y < futurePosition.y)
 		{
 			futurePosition = rayCast.GetCollisionPoint();

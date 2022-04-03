@@ -21,7 +21,7 @@ public class WorldCreator : Node2D
 	{
 		public static float MinCeilingPos = 100;
 		public static float MaxFloorPos = 500;
-		public static float MinRoomHeight = 100;
+		public static float MinRoomHeight = 150;
 		public static float FloorSlabHeight = 1000;
 	}
 
@@ -59,8 +59,7 @@ public class WorldCreator : Node2D
 	public void CreateWideSection()
 	{
 		var length = (float) GD.RandRange(200, 400);
-		var floorHeight = lastFloorHeight + (float) GD.RandRange(-400, 200);
-		GD.Print(floorHeight);
+		var floorHeight = lastFloorHeight + (float) GD.RandRange(-400, 150);
 		floorHeight = Mathf.Clamp(floorHeight,
 			WorldLimitations.MinCeilingPos + WorldLimitations.MinRoomHeight,
 			WorldLimitations.MaxFloorPos);

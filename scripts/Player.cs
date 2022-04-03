@@ -6,23 +6,41 @@ public class Player : KinematicBody2D
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
 	public Vector2 Velocity = Vector2.Zero;
 	[Export] private float maxMoveSpeed = 400;
-	[Export] private float moveAcceleration = 800;
-	[Export] private float brakingAcceleration = 800;
-	[Export] private float jumpSpeed = 600;
+	[Export] private float moveAcceleration = 1200;
+	[Export] private float brakingAcceleration = 1200;
+	[Export] private float jumpAcceleration = 600 * 7;
+	[Export] private float maxJumpSpeed = 600;
+	private bool isJumping = false;
+	private bool isAlive = true;
 
-	public override void _Ready()
-	{
-		
-	}
+	public event Action OnDie;
 
 	public override void _PhysicsProcess(float delta)
 	{
+		if (isAlive) Move(delta);
+	}
+	private void Move(float delta)
+	{
 		Velocity.y += gravity * delta;
-
 		float xAcceleration = 0;
 		if (Input.IsActionPressed("move_right")) xAcceleration += moveAcceleration;
 		if (Input.IsActionPressed("move_left")) xAcceleration -= moveAcceleration;
-		if (Input.IsActionPressed("jump") && IsOnFloor()) Velocity.y = -jumpSpeed;
+		// Initial jump
+		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		{
+			Velocity.y = -jumpAcceleration * delta;
+			isJumping = true;
+		}
+		else if (Input.IsActionPressed("jump") && isJumping)
+		{
+			Velocity.y -= jumpAcceleration * delta;
+			if (Velocity.y < -maxJumpSpeed)
+			{
+				Velocity.y = -maxJumpSpeed;
+				isJumping = false;
+			}
+		}
+		else if (Input.IsActionJustReleased("jump")) isJumping = false;
 
 		if (xAcceleration == 0)
 			Velocity.x = Utils.ConvergeValue(Velocity.x, 0, brakingAcceleration * delta);
@@ -44,7 +62,10 @@ public class Player : KinematicBody2D
 			{
 				var collider = (StaticBody2D) collision.Collider;
 				if (collider.IsInGroup("kills_player"))
-					GD.Print("Ouch");
+				{
+					isAlive = false;
+					OnDie?.Invoke();
+				}
 			}
 		}
 	}
