@@ -1,24 +1,34 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/WorldSlab.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/WorldCreator.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/CameraMovement.cs" type="Script" id=5]
+[ext_resource path="res://scripts/PlayerChaser.cs" type="Script" id=5]
 [ext_resource path="res://scripts/Main.cs" type="Script" id=6]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://art/spike.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 100, 300 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 6 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 300 )
-current = true
-script = ExtResource( 5 )
-playerPath = NodePath("../Player")
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 402, 312 )
+position = Vector2( 512, 300 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_top = 0
+limit_bottom = 0
+drag_margin_h_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.4
+drag_margin_top = 1.0
+drag_margin_right = 0.0
+drag_margin_bottom = 1.0
 
 [node name="StartingGround" parent="." instance=ExtResource( 2 )]
 position = Vector2( -512, 350 )
@@ -34,3 +44,37 @@ playerPath = NodePath("../Player")
 startPosition = 1024.0
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[node name="PlayerChaser" type="Node2D" parent="."]
+position = Vector2( 512, 0 )
+script = ExtResource( 5 )
+playerPath = NodePath("../Player")
+
+[node name="Particles2D" type="CPUParticles2D" parent="PlayerChaser"]
+position = Vector2( -512, 300 )
+amount = 200
+lifetime_randomness = 0.5
+texture = ExtResource( 8 )
+emission_shape = 2
+emission_rect_extents = Vector2( 50, 300 )
+gravity = Vector2( 0, 1000 )
+initial_velocity = 300.0
+initial_velocity_random = 1.0
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 0.5
+
+[node name="PlayerKiller" type="StaticBody2D" parent="PlayerChaser" groups=["kills_player"]]
+position = Vector2( -512, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChaser/PlayerKiller"]
+position = Vector2( -50, 300 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="PlayerChaser"]
+margin_left = -1546.0
+margin_right = -522.0
+margin_bottom = 600.0
+color = Color( 0.686275, 0.686275, 0.686275, 1 )

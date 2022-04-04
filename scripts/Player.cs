@@ -3,15 +3,15 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
-	public Vector2 Velocity = Vector2.Zero;
+	[Export] public float SpeedMultiplier = 1;
 	[Export] private float maxMoveSpeed = 400;
 	[Export] private float moveAcceleration = 1200;
 	[Export] private float brakingAcceleration = 1200;
-	[Export] private float fullJumpDuration = 0.25f;
-	[Export] private float maxJumpSpeed = 600;
-	private ulong jumpStartTime;
-	private bool isJumping;
+	[Export] private float fullJumpDuration = 0.4f;
+	[Export] private float maxJumpSpeed = 1000;
+	public Vector2 Velocity = Vector2.Zero;
+	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
+	private float jumpStartTime;
 	private bool isAlive = true;
 
 	public event Action OnDie;
@@ -33,8 +33,9 @@ public class Player : KinematicBody2D
 		}
 		else if (Input.IsActionJustReleased("jump"))
 		{
-			isJumping = false;
-			// Velocity.y = 
+			float timeSinceJump = ((float) OS.GetTicksMsec() - jumpStartTime) / 1000;
+			float newJumpVelocity = -maxJumpSpeed * Mathf.Min(1, timeSinceJump / fullJumpDuration);
+			Velocity.y = Mathf.Max(newJumpVelocity, Velocity.y);
 		}
 
 		if (xAcceleration == 0)
@@ -42,9 +43,9 @@ public class Player : KinematicBody2D
 		
 		Velocity.x += xAcceleration * delta;
 		Velocity.x = Mathf.Clamp(Velocity.x, -maxMoveSpeed, maxMoveSpeed);
-
-		Velocity = MoveAndSlide(Velocity, Vector2.Up);
+		
 		HandleCollisions();
+		Velocity = MoveAndSlide(Velocity * SpeedMultiplier, Vector2.Up) / SpeedMultiplier;
 	}
 
 	public void Die()

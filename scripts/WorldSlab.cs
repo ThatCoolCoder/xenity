@@ -26,13 +26,15 @@ public class WorldSlab : StaticBody2D
 		collider.Position = Size / 2;
 		collider.Shape = colliderRect;
 
-		visibilityNotifier.Rect = new Rect2(visibilityNotifier.Rect.Position, Size / 2);
+		// To make the rect the correct size, we should use Size / 2 in the line below
+		// But we want a bit of time before the rects disappear so make it twice as big
+		visibilityNotifier.Rect = new Rect2(visibilityNotifier.Rect.Position, Size);
 
 	}
 
 	private void _on_VisibilityNotifier2D_screen_exited()
 	{
-		// QueueFree();
+		QueueFree();
 	}
 
 }

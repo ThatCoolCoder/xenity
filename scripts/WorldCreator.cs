@@ -9,8 +9,8 @@ public class WorldCreator : Node2D
 	[Export] private bool enabled = true;
 	[Export] private float startPosition;
 
-	// Cannot fill in a list<Action> at initialization time, so do it in _Ready()
-	private List<Action> builders = new List<Action>();
+	// Cannot fill in a thing containing self-methods at initialization time, so do it in _Ready()
+	private Dictionary<Action, float> builders = new Dictionary<Action, float>();
 	private float lastWorldSlabEnd;
 	private float lastFloorHeight = 300;
 
@@ -28,10 +28,12 @@ public class WorldCreator : Node2D
 	public override void _Ready()
 	{
 		lastWorldSlabEnd = startPosition;
-		builders = new List<Action>()
+		builders = new Dictionary<Action, float>()
 		{
-			CreateWideSection,
-			CreateGapSection
+			{CreateWideSection, 3.0f},
+			{CreateGapSection,  1.0f},
+			{CreateNarrowSection, 0.7f},
+			{CreateDownwardShaftSection, 0.7f}
 		};
 	}
 
@@ -45,7 +47,7 @@ public class WorldCreator : Node2D
 		var rightOfScreen = (GetViewportTransform().AffineInverse() * GetViewportRect().Size).x;
 		while (lastWorldSlabEnd < rightOfScreen + rightBufferSize)
 		{
-			Utils.RandomFromList(builders)();
+			Utils.RandomElementWeighted(builders)();
 		}
 	}
 
@@ -56,18 +58,20 @@ public class WorldCreator : Node2D
 		slab.GlobalPosition = position;
 		GetParent().AddChild(slab);
 	}
+	
+	private float ClampFloorHeight(float floorHeight) => ClampFloorHeight(floorHeight, WorldLimitations.MinRoomHeight);
 
-	private float ClampFloorHeight(float floorHeight)
+	private float ClampFloorHeight(float floorHeight, float minRoomHeight)
 	{
 		return Mathf.Clamp(floorHeight,
-			WorldLimitations.MinCeilingPos + WorldLimitations.MinRoomHeight,
+			WorldLimitations.MinCeilingPos + minRoomHeight,
 			WorldLimitations.MaxFloorPos);	
 	}
 
 	private void CreateWideSection()
 	{
-		var length = (float) GD.RandRange(200, 400);
-		var floorHeight = ClampFloorHeight(lastFloorHeight + (float) GD.RandRange(-400, 150));
+		var length = (float) GD.RandRange(200, 350);
+		var floorHeight = ClampFloorHeight(lastFloorHeight + (float) GD.RandRange(-150, 300));
 		
 		AddWorldSlab(groundSlabScene,
 			new Vector2(lastWorldSlabEnd, floorHeight),
@@ -82,7 +86,7 @@ public class WorldCreator : Node2D
 
 	private void CreateGapSection()
 	{
-		var gapLength = (float) GD.RandRange(100, 450);
+		var gapLength = (float) GD.RandRange(100, 350);
 		float startLength = 100;
 		float endLength = 100;
 		float newFloorHeight = ClampFloorHeight(lastFloorHeight + (float) GD.RandRange(-200, 100));
@@ -97,5 +101,43 @@ public class WorldCreator : Node2D
 
 		lastFloorHeight = newFloorHeight;
 		lastWorldSlabEnd += startLength + gapLength + endLength;
+	}
+	
+	private void CreateNarrowSection()
+	{
+		var length = (float) GD.RandRange(100, 200);
+		float height = 100;
+		float endGapLength = 150;
+		
+		AddWorldSlab(groundSlabScene,
+			new Vector2(lastWorldSlabEnd, lastFloorHeight),
+			new Vector2(length + endGapLength, WorldLimitations.FloorSlabHeight));
+		AddWorldSlab(ceilingSlabScene,
+			new Vector2(lastWorldSlabEnd, 0),
+			new Vector2(length, lastFloorHeight - height));
+		AddWorldSlab(ceilingSlabScene,
+			new Vector2(lastWorldSlabEnd + length, 0),
+			new Vector2(endGapLength, lastFloorHeight - WorldLimitations.MinRoomHeight));
+		lastWorldSlabEnd += length + endGapLength;
+	}
+	
+	private void CreateDownwardShaftSection()
+	{
+		float length = 100;
+		float endGapLength = 50;
+		float endGapHeight = WorldLimitations.MinRoomHeight;
+		
+		AddWorldSlab(groundSlabScene,
+			new Vector2(lastWorldSlabEnd, WorldLimitations.MaxFloorPos),
+			new Vector2(length + endGapLength, WorldLimitations.FloorSlabHeight));
+		AddWorldSlab(ceilingSlabScene,
+			new Vector2(lastWorldSlabEnd, 0),
+			new Vector2(length, WorldLimitations.MinCeilingPos));
+		AddWorldSlab(ceilingSlabScene,
+			new Vector2(lastWorldSlabEnd + length, 0),
+			new Vector2(endGapLength, WorldLimitations.MaxFloorPos - endGapHeight));
+		
+		lastWorldSlabEnd += length + endGapLength;
+		lastFloorHeight = WorldLimitations.MaxFloorPos;
 	}
 }

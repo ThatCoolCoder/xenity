@@ -63,13 +63,13 @@ public class EnemySpawner : Node2D
 		// Use player position prediction to spawn enemies 
 
 		var prediction = PredictPlayerPosition();
-		var enemyType = Utils.RandomFromList(prediction.IsOnGround ? groundEnemies : airEnemies);
+		var enemyType = Utils.RandomElement(prediction.IsOnGround ? groundEnemies : airEnemies);
 		var enemyProbability = prediction.IsOnGround ? groundEnemyProbability : airEnemyProbability;
 
 		if (random.NextDouble() < enemyProbability)
 		{
 			var enemy = (BaseEnemy) enemyType.PackedScene.Instance();
-			var scale = Utils.RandomFloat(enemyType.MinScale, enemyType.MaxScale);
+			var scale = (float) GD.RandRange(enemyType.MinScale, enemyType.MaxScale);
 			enemy.Scale = Vector2.One * scale;
 			enemy.GlobalPosition = prediction.Position + enemyType.PositionOffset * scale;
 			GetParent().AddChild(enemy);

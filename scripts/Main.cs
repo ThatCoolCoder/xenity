@@ -16,7 +16,7 @@ public class Main : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		score = (int) (player.GlobalPosition.x / 10f);
+		score = Mathf.Max((int) (player.GlobalPosition.x / 10f), score);
 		HUD.Score = score;
 	}
 
