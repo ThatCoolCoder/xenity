@@ -3,6 +3,8 @@ using System;
 
 public class HUD : CanvasLayer
 {
+	// Heads-up-display for in-game UI like score
+
 	public int Score;
 
 	private Label scoreLabel;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemySpawner : Node2D
 {
+	// Predicts player's future position and spawns traps/enemies there
 
 	[Export] public bool Enabled = true;
 	[Export] private float groundEnemyProbability = 1f / 40f;

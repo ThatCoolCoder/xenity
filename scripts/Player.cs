@@ -3,15 +3,18 @@ using System;
 
 public class Player : KinematicBody2D
 {
+	// Player controller
+	// Can move left/right with 
+
 	[Export] public float SpeedMultiplier = 1;
 	[Export] private float maxMoveSpeed = 400;
 	[Export] private float moveAcceleration = 1200;
 	[Export] private float brakingAcceleration = 1200;
-	[Export] private float fullJumpDuration = 0.4f;
+	[Export] private float fullJumpDuration = 0.4f; // how long to hold jump button to get a full-height jump
 	[Export] private float maxJumpSpeed = 1000;
 	public Vector2 Velocity = Vector2.Zero;
+	private float jumpStartTime; // time at which current jump was started
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
-	private float jumpStartTime;
 	private bool isAlive = true;
 
 	public event Action OnDie;
@@ -33,8 +36,10 @@ public class Player : KinematicBody2D
 		}
 		else if (Input.IsActionJustReleased("jump"))
 		{
-			float timeSinceJump = ((float) OS.GetTicksMsec() - jumpStartTime) / 1000;
-			float newJumpVelocity = -maxJumpSpeed * Mathf.Min(1, timeSinceJump / fullJumpDuration);
+			// Calculate how long the jump button has been pressed and use that to calculate
+			// what size jump to do.
+			float timeSinceJumpStarted = ((float) OS.GetTicksMsec() - jumpStartTime) / 1000;
+			float newJumpVelocity = -maxJumpSpeed * Mathf.Min(1, timeSinceJumpStarted / fullJumpDuration);
 			Velocity.y = Mathf.Max(newJumpVelocity, Velocity.y);
 		}
 
@@ -56,15 +61,15 @@ public class Player : KinematicBody2D
 
 	private void HandleCollisions()
 	{
-		// todo: make player die when hitting stuff
-		for (int i = 0; i < GetSlideCount(); i ++)
+		for (int i = 0; i < GetSlideCount(); i ++) HandleCollision(GetSlideCollision(i));
+	}
+
+	private void HandleCollision(KinematicCollision2D collision)
+	{
+		if (typeof(StaticBody2D).IsAssignableFrom(collision.Collider.GetType()))
 		{
-			var collision = GetSlideCollision(i);
-			if (typeof(StaticBody2D).IsAssignableFrom(collision.Collider.GetType()))
-			{
-				var collider = (StaticBody2D) collision.Collider;
-				if (collider.IsInGroup("kills_player")) Die();
-			}
+			var collider = (StaticBody2D) collision.Collider;
+			if (collider.IsInGroup("kills_player")) Die();
 		}
 	}
 

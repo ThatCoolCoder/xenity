@@ -3,6 +3,8 @@ using System;
 
 public class BaseEnemy : StaticBody2D
 {
+	// Basic enemy behaviour, handles growing/appearing and deleting when off screen
+
 	private VisibilityNotifier2D visibilityNotifier;
 	private AnimatedSprite sprite;
 	private CollisionShape2D collisionShape2D;
