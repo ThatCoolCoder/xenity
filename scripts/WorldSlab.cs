@@ -3,6 +3,7 @@ using System;
 
 public class WorldSlab : StaticBody2D
 {
+	// Rectangular slab of ground that deletes when off screen
 	[Export] public Vector2 Size = new Vector2(20, 20);
 
 	private Sprite sprite;

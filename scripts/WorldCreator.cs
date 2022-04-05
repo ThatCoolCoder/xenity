@@ -61,7 +61,7 @@ public class WorldCreator : Node2D
 		var slab = (WorldSlab) slabType.Instance();
 		slab.Size = size;
 		slab.GlobalPosition = position;
-		GetParent().AddChild(slab);
+		AddChild(slab);
 	}
 	
 	private float ClampFloorHeight(float floorHeight) => ClampFloorHeight(floorHeight, WorldLimitations.MinRoomHeight);

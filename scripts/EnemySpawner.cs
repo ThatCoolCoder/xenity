@@ -73,7 +73,7 @@ public class EnemySpawner : Node2D
 			var scale = (float) GD.RandRange(enemyType.MinScale, enemyType.MaxScale);
 			enemy.Scale = Vector2.One * scale;
 			enemy.GlobalPosition = prediction.Position + enemyType.PositionOffset * scale;
-			GetParent().AddChild(enemy);
+			AddChild(enemy);
 		}
 	}
 
