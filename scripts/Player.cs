@@ -4,25 +4,35 @@ using System;
 public class Player : KinematicBody2D
 {
 	// Player controller
-	// Can move left/right with 
+	// - Left/right movement with acceleration
+	// - Variable height jump
+	// - Animation control
 
 	[Export] public float SpeedMultiplier = 1;
 	[Export] private float maxMoveSpeed = 400;
 	[Export] private float moveAcceleration = 1200;
 	[Export] private float brakingAcceleration = 1200;
-	[Export] private float fullJumpDuration = 0.4f; // how long to hold jump button to get a full-height jump
+	[Export] private float fullJumpDuration = 0.6f; // how long to hold jump button to get a full-height jump
 	[Export] private float maxJumpSpeed = 1000;
 	public Vector2 Velocity = Vector2.Zero;
+	private AnimatedSprite sprite;
 	private float jumpStartTime; // time at which current jump was started
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
 	private bool isAlive = true;
 
 	public event Action OnDie;
 
+	public override void _Ready()
+	{
+		sprite = GetNode<AnimatedSprite>("Sprite");	
+	}
+
 	public override void _PhysicsProcess(float delta)
 	{
 		if (isAlive) Move(delta);
+		SetAnimation();
 	}
+	
 	private void Move(float delta)
 	{
 		Velocity.y += gravity * delta;
@@ -51,6 +61,18 @@ public class Player : KinematicBody2D
 		
 		HandleCollisions();
 		Velocity = MoveAndSlide(Velocity * SpeedMultiplier, Vector2.Up) / SpeedMultiplier;
+	}
+
+	private void SetAnimation()
+	{
+		// Set the animation based on what the player is doing
+
+		bool isMoving = Mathf.Abs(Velocity.x) > 0;
+
+		if (isMoving) sprite.FlipH = Velocity.x < 0;
+
+		if (IsOnFloor()) sprite.Animation = isMoving ? "move_right" : "idle";
+		else sprite.Animation = Velocity.y < 0 ? "jump" : "fall";
 	}
 
 	public void Die()
