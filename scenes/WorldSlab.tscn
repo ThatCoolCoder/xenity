@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://art/ground.png" type="Texture" id=1]
+[ext_resource path="res://art/ground_block.png" type="Texture" id=1]
 [ext_resource path="res://scripts/WorldSlab.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -16,7 +16,7 @@ position = Vector2( 20, 20 )
 scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
+scale = Vector2( 1.99842, 2 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
