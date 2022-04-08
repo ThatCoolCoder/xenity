@@ -83,15 +83,15 @@ public class Player : KinematicBody2D
 
 	private void HandleCollisions()
 	{
-		for (int i = 0; i < GetSlideCount(); i ++) HandleCollision(GetSlideCollision(i));
+		for (int i = 0; i < GetSlideCount(); i ++) HandleCollision(GetSlideCollision(i).Collider);
 	}
 
-	private void HandleCollision(KinematicCollision2D collision)
+	private void HandleCollision(object collider)
 	{
-		if (typeof(StaticBody2D).IsAssignableFrom(collision.Collider.GetType()))
+		if (typeof(StaticBody2D).IsAssignableFrom(collider.GetType()))
 		{
-			var collider = (StaticBody2D) collision.Collider;
-			if (collider.IsInGroup("kills_player")) Die();
+			var colliderBody = (StaticBody2D) collider;
+			if (colliderBody.IsInGroup("kills_player")) Die();
 		}
 	}
 
@@ -99,4 +99,12 @@ public class Player : KinematicBody2D
 	{
 		Die();
 	}
+
+
+	private void _on_Area2D_body_entered(object body)
+	{
+		// Collisions from moving static bodies don't get registered by GetSlideCollision if we're still so also have an area to detect those
+		HandleCollision(body);
+	}
+
 }
