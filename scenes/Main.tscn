@@ -36,22 +36,11 @@ drag_margin_bottom = 1.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 45, 6 )
-Enabled = false
 groundEnemyProbability = 0.015
 airEnemyProbability = 0.01
 playerPath = NodePath("../Player")
 
-[node name="WorldCreator" parent="." instance=ExtResource( 4 )]
-startPosition = 1024.0
-
-[node name="GroundSlab" parent="." instance=ExtResource( 2 )]
-position = Vector2( -512, 300 )
-Size = Vector2( 1536, 300 )
-
-[node name="HUD" parent="." instance=ExtResource( 7 )]
-
 [node name="PlayerChaser" type="Node2D" parent="."]
-visible = false
 position = Vector2( 512, 0 )
 script = ExtResource( 5 )
 playerPath = NodePath("../Player")
@@ -103,3 +92,12 @@ angular_velocity_random = 1.0
 angle_random = 1.0
 scale_amount = 2.0
 scale_amount_random = 0.5
+
+[node name="WorldCreator" parent="." instance=ExtResource( 4 )]
+startPosition = 1024.0
+
+[node name="GroundSlab" parent="." instance=ExtResource( 2 )]
+position = Vector2( -512, 300 )
+Size = Vector2( 1536, 300 )
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
