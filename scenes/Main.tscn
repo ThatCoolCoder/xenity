@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/WorldSlab.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/GroundSlab.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/WorldCreator.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/PlayerChaser.cs" type="Script" id=5]
@@ -36,20 +36,22 @@ drag_margin_bottom = 1.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 45, 6 )
+Enabled = false
 groundEnemyProbability = 0.015
 airEnemyProbability = 0.01
 playerPath = NodePath("../Player")
 
-[node name="StartingGround" parent="." instance=ExtResource( 2 )]
-position = Vector2( -512, 350 )
-Size = Vector2( 1536, 250 )
-
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0
+
+[node name="GroundSlab" parent="." instance=ExtResource( 2 )]
+position = Vector2( -512, 300 )
+Size = Vector2( 1536, 300 )
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 
 [node name="PlayerChaser" type="Node2D" parent="."]
+visible = false
 position = Vector2( 512, 0 )
 script = ExtResource( 5 )
 playerPath = NodePath("../Player")

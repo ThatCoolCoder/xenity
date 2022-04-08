@@ -20,7 +20,7 @@ public class WorldSlab : StaticBody2D
 
 	public override void _Process(float delta)
 	{
-		sprite.RegionRect = new Rect2(sprite.RegionRect.Position, Size / 2);
+		((ShaderMaterial) sprite.Material).SetShaderParam("sprite_size", Size);
 
 		var colliderRect = new RectangleShape2D();
 		colliderRect.Extents = Size / 2;

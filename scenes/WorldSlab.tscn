@@ -1,7 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://art/ground_block.png" type="Texture" id=1]
+[ext_resource path="res://art/large_placeholder.svg" type="Texture" id=1]
 [ext_resource path="res://scripts/WorldSlab.cs" type="Script" id=2]
+[ext_resource path="res://resources/WorldSlab.gdshader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/base_color = Color( 0.4, 0.6, 0.9, 1 )
+shader_param/border_color = Color( 1, 1, 1, 1 )
+shader_param/sprite_size = Vector2( 20, 20 )
+shader_param/border_width = 2.0
+shader_param/draw_top_border = true
+shader_param/draw_bottom_border = true
+shader_param/draw_left_border = true
+shader_param/draw_right_border = true
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 20 )
@@ -16,11 +29,10 @@ position = Vector2( 20, 20 )
 scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1.99842, 2 )
+material = SubResource( 2 )
 texture = ExtResource( 1 )
 centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 20, 20 )
+region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 20, 20 )
