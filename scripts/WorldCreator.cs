@@ -24,7 +24,7 @@ public class WorldCreator : Node2D
 	{
 		public static float MinCeilingPos = 100;
 		public static float MaxFloorPos = 500;
-		public static float MinRoomHeight = 150;
+		public static float MinRoomHeight = 180;
 		public static float FloorSlabHeight = 1000;
 	}
 
@@ -138,7 +138,7 @@ public class WorldCreator : Node2D
 
 
 		var length = (float) GD.RandRange(100, 200);
-		float height = 100;
+		float height = 120;
 		
 		AddWorldSlab(groundSlabScene,
 			new Vector2(lastWorldSlabEnd, lastFloorHeight),

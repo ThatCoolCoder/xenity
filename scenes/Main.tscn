@@ -23,6 +23,7 @@ environment = ExtResource( 9 )
 position = Vector2( 512, 300 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+show_behind_parent = true
 current = true
 limit_top = 0
 limit_bottom = 0
