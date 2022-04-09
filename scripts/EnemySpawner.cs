@@ -9,16 +9,17 @@ public class EnemySpawner : Node2D
 	[Export] public bool Enabled = true;
 	[Export] private float groundEnemyProbability = 1f / 40f;
 	[Export] private float airEnemyProbability = 0; // todo: make proper air enemies
-	[Export] private float predictionDistance = 0.5f; // predict position this many seconds in future
-
-	private float rayCastVerticalOffset = -2000;
+	[Export] private float predictionDistance = 0.85f; // predict position this many seconds in future
+	[Export] private float maxEnemyInterval = 1.5f;
+	[Export] private float rayCastVerticalOffset = -2000;
+	private float lastEnemySpawnTime = OS.GetTicksMsec();
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
 
 
 	private RayCast2D rayCast;
 	[Export] private NodePath playerPath;
 	private Player player;
-
+	private Timer firstEnemyTimer;
 	private static Random random = new Random();
 
 	private List<EnemyType> groundEnemies = new List<EnemyType>
@@ -52,11 +53,12 @@ public class EnemySpawner : Node2D
 	{
 		rayCast = GetNode<RayCast2D>("RayCast2D");
 		player = GetNode<Player>(playerPath);
+		firstEnemyTimer = GetNode<Timer>("FirstEnemyDelay");
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
-		if (Enabled) SpawnEnemies();
+		if (Enabled && firstEnemyTimer.TimeLeft == 0) SpawnEnemies();
 	}
 
 	private void SpawnEnemies()
@@ -67,13 +69,14 @@ public class EnemySpawner : Node2D
 		var enemyType = Utils.RandomElement(prediction.IsOnGround ? groundEnemies : airEnemies);
 		var enemyProbability = prediction.IsOnGround ? groundEnemyProbability : airEnemyProbability;
 
-		if (random.NextDouble() < enemyProbability)
+		if (random.NextDouble() < enemyProbability || lastEnemySpawnTime + maxEnemyInterval * 1000 < OS.GetTicksMsec())
 		{
 			var enemy = (BaseEnemy) enemyType.PackedScene.Instance();
 			var scale = (float) GD.RandRange(enemyType.MinScale, enemyType.MaxScale);
 			enemy.Scale = Vector2.One * scale;
-			enemy.GlobalPosition = prediction.Position + enemyType.PositionOffset * scale;
 			AddChild(enemy);
+			enemy.GlobalPosition = prediction.Position + enemyType.PositionOffset * scale;
+			lastEnemySpawnTime = OS.GetTicksMsec();
 		}
 	}
 
@@ -81,9 +84,12 @@ public class EnemySpawner : Node2D
 	{
 		// Predict where the player will be in predictionDistance seconds
 
+		// Scale prediction distance as game speeds up
+		float scaledPredictionDistance = predictionDistance / Main.SpeedMultiplier;
+
 		// Basic velocity-based calculation
-		Vector2 futurePosition = player.Position + (player.Velocity * predictionDistance);
-		float gravityOffset = gravity * predictionDistance * predictionDistance * 0.5f;
+		Vector2 futurePosition = player.Position + (player.Velocity * scaledPredictionDistance);
+		float gravityOffset = gravity * scaledPredictionDistance * scaledPredictionDistance * 0.5f;
 		futurePosition.y += gravityOffset;
 
 		// Moving player out of ground if they would hit it

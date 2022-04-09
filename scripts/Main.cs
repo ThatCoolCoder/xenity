@@ -3,10 +3,10 @@ using System;
 
 public class Main : Node2D
 {
-	[Export] private float speedMultiplier;
+	public static float SpeedMultiplier;
 	[Export] private float startingSpeedMultiplier = 1;
-	[Export] private float speedMultiplierIncrement = 0.05f;
-	[Export] private float maxSpeedMultiplier = 2.5f;
+	[Export] private float speedMultiplierIncrement = 0.025f;
+	[Export] private float maxSpeedMultiplier = 1.75f;
 
 	private Player player;
 	private PlayerChaser playerChaser;
@@ -19,7 +19,7 @@ public class Main : Node2D
 		playerChaser = GetNode<PlayerChaser>("PlayerChaser");
 		HUD = GetNode<HUD>("HUD");
 
-		speedMultiplier = startingSpeedMultiplier;
+		SpeedMultiplier = startingSpeedMultiplier;
 	}
 
 	public override void _Process(float delta)
@@ -29,9 +29,7 @@ public class Main : Node2D
 		HUD.Score = score;
 
 		// Increase speed
-		speedMultiplier = Mathf.Min(speedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);
-		player.SpeedMultiplier = speedMultiplier;
-		playerChaser.SpeedMultiplier = speedMultiplier;
+		SpeedMultiplier = Mathf.Min(SpeedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);
 	}
 
 	private void OnPlayerDied()

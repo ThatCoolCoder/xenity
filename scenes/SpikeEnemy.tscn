@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/BaseEnemy.cs" type="Script" id=2]
 [ext_resource path="res://art/spike_growing.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 16 )
 
@@ -42,7 +42,7 @@ region = Rect2( 0, 112, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 3 ) ],
+"frames": [ SubResource( 12 ) ],
 "loop": true,
 "name": "fullyGrown",
 "speed": 5.0
@@ -63,6 +63,7 @@ script = ExtResource( 2 )
 frames = SubResource( 2 )
 animation = "growing"
 frame = 2
+speed_scale = 1.5
 playing = true
 centered = false
 

@@ -15,6 +15,7 @@ public class BaseEnemy : StaticBody2D
 	{
 		visibilityNotifier = GetNode<VisibilityNotifier2D>("VisibilityNotifier2D");
 		sprite = GetNode<AnimatedSprite>("Sprite");
+		sprite.SpeedScale *= Main.SpeedMultiplier;
 		collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
 	}
 

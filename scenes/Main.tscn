@@ -27,7 +27,6 @@ current = true
 limit_top = 0
 limit_bottom = 0
 drag_margin_h_enabled = true
-smoothing_enabled = true
 smoothing_speed = 10.0
 drag_margin_left = 0.4
 drag_margin_top = 1.0
@@ -35,7 +34,7 @@ drag_margin_right = 0.0
 drag_margin_bottom = 1.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
-position = Vector2( 45, 6 )
+position = Vector2( 0, 6 )
 groundEnemyProbability = 0.015
 airEnemyProbability = 0.01
 playerPath = NodePath("../Player")
@@ -57,6 +56,9 @@ margin_left = -1536.0
 margin_right = -512.0
 margin_bottom = 600.0
 color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackParticles" type="CPUParticles2D" parent="PlayerChaser"]
 position = Vector2( -1024, 300 )
