@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class HUD : CanvasLayer
+public class HUD : Control
 {
 	// Heads-up-display for in-game UI like score
 

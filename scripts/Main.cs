@@ -3,21 +3,26 @@ using System;
 
 public class Main : Node2D
 {
+	// Main gameplay scene, handles score and managing the other scenes
+
 	public static float SpeedMultiplier;
+	public static int Score;
 	[Export] private float startingSpeedMultiplier = 1;
 	[Export] private float speedMultiplierIncrement = 0.025f;
 	[Export] private float maxSpeedMultiplier = 1.75f;
-
 	private Player player;
 	private PlayerChaser playerChaser;
+	private Timer afterPlayerDieTimer;
 	private HUD HUD;
-	private int score;
+	private Control afterDieHUD;
 	public override void _Ready()
 	{
 		player = GetNode<Player>("Player");
 		player.OnDie += OnPlayerDied;
 		playerChaser = GetNode<PlayerChaser>("PlayerChaser");
-		HUD = GetNode<HUD>("HUD");
+		afterPlayerDieTimer = GetNode<Timer>("AfterPlayerDieTimer");
+		HUD = GetNode<HUD>("CanvasLayer/HUD");
+		afterDieHUD = GetNode<Control>("CanvasLayer/AfterDieHUD");
 
 		SpeedMultiplier = startingSpeedMultiplier;
 	}
@@ -25,8 +30,7 @@ public class Main : Node2D
 	public override void _Process(float delta)
 	{
 		// Update score
-		score = Mathf.Max((int) (player.GlobalPosition.x / 10f), score);
-		HUD.Score = score;
+		Score = Mathf.Max((int) (player.GlobalPosition.x / 10f), Score);
 
 		// Increase speed
 		SpeedMultiplier = Mathf.Min(SpeedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);
@@ -34,6 +38,14 @@ public class Main : Node2D
 
 	private void OnPlayerDied()
 	{
-		GetTree().ReloadCurrentScene();
+		// Pause game 
+		SpeedMultiplier = 0;
+		afterPlayerDieTimer.Start();
+		HUD.Hide();
+	}
+
+	private void _on_AfterPlayerDieTimer_timeout()
+	{
+		afterDieHUD.Show();
 	}
 }

@@ -20,6 +20,7 @@ public class Player : KinematicBody2D
 	private bool jumpInProgress = true;
 	private float lastOnFloor; // time at which player was last on floor
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
+	private PackedScene dieEffectPrefab = GD.Load<PackedScene>("res://scenes/PlayerDieEffect.tscn");
 	private bool isAlive = true;
 
 	public event Action OnDie;
@@ -86,6 +87,10 @@ public class Player : KinematicBody2D
 	public void Die()
 	{
 		isAlive = false;
+		sprite.Hide();
+		var dieEffect = dieEffectPrefab.Instance<CPUParticles2D>();
+		AddChild(dieEffect);
+		dieEffect.Emitting = true;
 		OnDie?.Invoke();
 	}
 
