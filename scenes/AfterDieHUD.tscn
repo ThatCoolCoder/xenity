@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/AfterDieHUD.cs" type="Script" id=3]
+[ext_resource path="res://resources/smaller_font.tres" type="DynamicFont" id=4]
 
 [node name="AfterDieHUD" type="Control"]
 anchor_right = 1.0
@@ -14,17 +15,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -28.5
-margin_top = -152.0
-margin_right = 28.5
-margin_bottom = 20.0
+margin_left = -77.0
+margin_top = -125.0
+margin_right = 77.0
+margin_bottom = 125.0
 grow_horizontal = 2
+custom_constants/separation = 20
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_top = 16.0
-margin_right = 154.0
-margin_bottom = 65.0
+margin_right = 317.0
+margin_bottom = 49.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 2 )
 text = "You Died"
@@ -32,19 +33,39 @@ align = 1
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer"]
 margin_top = 69.0
-margin_right = 154.0
+margin_right = 317.0
 margin_bottom = 108.0
 custom_fonts/font = ExtResource( 1 )
-text = "Score: <int>"
+text = "Score: <int>    Best: <int>"
+align = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+margin_top = 128.0
+margin_right = 317.0
+margin_bottom = 128.0
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
-margin_top = 112.0
-margin_right = 154.0
-margin_bottom = 132.0
+margin_left = 122.0
+margin_top = 148.0
+margin_right = 194.0
+margin_bottom = 179.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 4 )
 text = "Restart"
 
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+margin_top = 199.0
+margin_right = 317.0
+margin_bottom = 199.0
+
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
-margin_top = 136.0
-margin_right = 154.0
-margin_bottom = 156.0
+margin_left = 106.0
+margin_top = 219.0
+margin_right = 211.0
+margin_bottom = 250.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 4 )
 text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

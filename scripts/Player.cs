@@ -88,9 +88,8 @@ public class Player : KinematicBody2D
 	{
 		isAlive = false;
 		sprite.Hide();
-		var dieEffect = dieEffectPrefab.Instance<CPUParticles2D>();
+		var dieEffect = dieEffectPrefab.Instance<PlayerDieEffect>();
 		AddChild(dieEffect);
-		dieEffect.Emitting = true;
 		OnDie?.Invoke();
 	}
 

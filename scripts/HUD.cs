@@ -5,8 +5,6 @@ public class HUD : Control
 {
 	// Heads-up-display for in-game UI like score
 
-	public int Score;
-
 	private Label scoreLabel;
 
 	public override void _Ready()
@@ -16,6 +14,6 @@ public class HUD : Control
 
 	public override void _Process(float delta)
 	{
-		scoreLabel.Text = $"Score: {Score}";
+		scoreLabel.Text = $"Score: {Main.Score}";
 	}
 }

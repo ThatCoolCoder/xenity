@@ -15,6 +15,7 @@ public class Main : Node2D
 	private Timer afterPlayerDieTimer;
 	private HUD HUD;
 	private Control afterDieHUD;
+	
 	public override void _Ready()
 	{
 		player = GetNode<Player>("Player");
@@ -25,6 +26,7 @@ public class Main : Node2D
 		afterDieHUD = GetNode<Control>("CanvasLayer/AfterDieHUD");
 
 		SpeedMultiplier = startingSpeedMultiplier;
+		Score = 0;
 	}
 
 	public override void _Process(float delta)
@@ -40,6 +42,7 @@ public class Main : Node2D
 	{
 		// Pause game 
 		SpeedMultiplier = 0;
+		
 		afterPlayerDieTimer.Start();
 		HUD.Hide();
 	}
