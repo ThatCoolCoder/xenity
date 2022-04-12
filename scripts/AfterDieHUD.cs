@@ -3,10 +3,28 @@ using System;
 
 public class AfterDieHUD : Control
 {
-	public override void _Ready()
+	private void _on_AfterDieHUD_visibility_changed()
 	{
-		GetNode<Label>("VBoxContainer/ScoreLabel").Text =
-			$"Score: {Main.Score}    Best: <int>";
+		// Setup text etc when shown
+
+
+		if (Visible)
+		{
+			int highScore = HighScoreManager.LoadHighScore();
+
+			// If we set a new high score, say that
+			if (highScore == Main.Score)
+			{
+				GetNode<Label>("VBoxContainer/ScoreLabel").Text =
+					$"Score: {Main.Score} - New Best!";
+			}
+			// Otherwise say current score and what the high is
+			else
+			{
+				GetNode<Label>("VBoxContainer/ScoreLabel").Text =
+					$"Score: {Main.Score}    Best: {highScore}";
+			}
+		}
 	}
 
 	private void _on_RestartButton_pressed()
@@ -19,4 +37,5 @@ public class AfterDieHUD : Control
 	{
 		GetTree().ChangeScene("res://scenes/StartScreen.tscn");
 	}
+
 }

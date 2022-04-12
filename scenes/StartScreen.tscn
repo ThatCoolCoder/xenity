@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/StartScreen.cs" type="Script" id=3]
+[ext_resource path="res://scenes/WorldCreator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/StartScreenCamera.cs" type="Script" id=6]
+[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=7]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 3 )
@@ -35,5 +39,17 @@ margin_bottom = 10.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 1 )
 text = "Play"
+
+[node name="Background" parent="." instance=ExtResource( 7 )]
+
+[node name="WorldCreator" parent="." instance=ExtResource( 4 )]
+startPosition = -1000.0
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 5 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 6 )
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

@@ -44,11 +44,15 @@ public class Main : Node2D
 		SpeedMultiplier = 0;
 		
 		afterPlayerDieTimer.Start();
-		HUD.Hide();
+		if (HighScoreManager.LoadHighScore() < Score)
+		{
+			HighScoreManager.SaveHighScore(Score);
+		}
 	}
 
 	private void _on_AfterPlayerDieTimer_timeout()
 	{
+		HUD.Hide();
 		afterDieHUD.Show();
 	}
 }

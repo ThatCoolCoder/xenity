@@ -67,5 +67,6 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 4 )
 text = "Main Menu"
 
+[connection signal="visibility_changed" from="." to="." method="_on_AfterDieHUD_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
