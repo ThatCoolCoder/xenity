@@ -37,6 +37,9 @@ drag_margin_top = 1.0
 drag_margin_right = 0.0
 drag_margin_bottom = 1.0
 
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( 512, 300 )
+
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 6 )
 groundEnemyProbability = 0.015
@@ -80,8 +83,8 @@ angle_random = 1.0
 scale_amount = 2.0
 scale_amount_random = 0.5
 color = Color( 0.862745, 0.462745, 0.223529, 1 )
-hue_variation = 0.05
-hue_variation_random = 0.1
+hue_variation = 0.1
+hue_variation_random = 0.2
 
 [node name="FrontParticles" type="CPUParticles2D" parent="PlayerChaser"]
 position = Vector2( -512, 300 )
@@ -99,8 +102,8 @@ angle_random = 1.0
 scale_amount = 2.0
 scale_amount_random = 0.5
 color = Color( 0.862745, 0.462745, 0.223529, 1 )
-hue_variation = 0.05
-hue_variation_random = 0.1
+hue_variation = 0.1
+hue_variation_random = 0.2
 
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0

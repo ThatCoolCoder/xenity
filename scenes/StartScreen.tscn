@@ -24,7 +24,7 @@ margin_right = 151.0
 margin_bottom = -94.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 2 )
-text = "Game Name Here"
+text = "Xonotux"
 align = 1
 
 [node name="Button" type="Button" parent="CanvasLayer"]

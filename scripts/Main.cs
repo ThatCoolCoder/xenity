@@ -11,6 +11,7 @@ public class Main : Node2D
 	[Export] private float speedMultiplierIncrement = 0.025f;
 	[Export] private float maxSpeedMultiplier = 1.75f;
 	private Player player;
+	private Position2D startPosition;
 	private PlayerChaser playerChaser;
 	private Timer afterPlayerDieTimer;
 	private HUD HUD;
@@ -20,6 +21,9 @@ public class Main : Node2D
 	{
 		player = GetNode<Player>("Player");
 		player.OnDie += OnPlayerDied;
+		startPosition = GetNode<Position2D>("StartPosition");
+		player.GlobalPosition = startPosition.GlobalPosition;
+		
 		playerChaser = GetNode<PlayerChaser>("PlayerChaser");
 		afterPlayerDieTimer = GetNode<Timer>("AfterPlayerDieTimer");
 		HUD = GetNode<HUD>("CanvasLayer/HUD");
@@ -32,7 +36,8 @@ public class Main : Node2D
 	public override void _Process(float delta)
 	{
 		// Update score
-		Score = Mathf.Max((int) (player.GlobalPosition.x / 10f), Score);
+		float distanceTravelled = player.GlobalPosition.x - startPosition.GlobalPosition.x;
+		Score = Mathf.Max((int) (distanceTravelled / 10f), Score);
 
 		// Increase speed
 		SpeedMultiplier = Mathf.Min(SpeedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);
