@@ -1,29 +1,28 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class AfterDieHUD : Control
 {
+	// Display showing after you die showning score and asking to restart/go to main menu
+	// Also displays tips/hints
+	
+	[Export] public List<string> hints = new List<string>(); 
+	
 	private void _on_AfterDieHUD_visibility_changed()
 	{
-		// Setup text etc when shown
-
+		// Setup content when first shown
 
 		if (Visible)
 		{
+			// Set score label
 			int highScore = HighScoreManager.LoadHighScore();
-
-			// If we set a new high score, say that
-			if (highScore == Main.Score)
-			{
-				GetNode<Label>("VBoxContainer/ScoreLabel").Text =
-					$"Score: {Main.Score} - New Best!";
-			}
-			// Otherwise say current score and what the high is
-			else
-			{
-				GetNode<Label>("VBoxContainer/ScoreLabel").Text =
-					$"Score: {Main.Score}    Best: {highScore}";
-			}
+			GetNode<Label>("VBoxContainer/ScoreLabel").Text = highScore == Main.Score ?
+				$"Score: {Main.Score} - New Best!" :
+				$"Score: {Main.Score}    Best: {highScore}";
+			
+			// Show a hint
+			GetNode<Label>("VBoxContainer/HintLabel").Text = $"Tip: {Utils.RandomElement(hints)}";
 		}
 	}
 

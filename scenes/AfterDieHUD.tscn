@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )
 script = ExtResource( 3 )
+hints = PoolStringArray( "Changing direction regularly makes it harder to predict your movement", "Sometimes you need to go backwards to avoid dying", "Press R to restart quickly" )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -26,7 +27,7 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_right = 317.0
+margin_right = 492.0
 margin_bottom = 49.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 2 )
@@ -35,7 +36,7 @@ align = 1
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer"]
 margin_top = 69.0
-margin_right = 317.0
+margin_right = 492.0
 margin_bottom = 108.0
 custom_fonts/font = ExtResource( 1 )
 text = "Score: <int>    Best: <int>"
@@ -43,13 +44,13 @@ align = 1
 
 [node name="Spacer" type="Control" parent="VBoxContainer"]
 margin_top = 128.0
-margin_right = 317.0
+margin_right = 492.0
 margin_bottom = 128.0
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
-margin_left = 120.0
+margin_left = 207.0
 margin_top = 148.0
-margin_right = 196.912
+margin_right = 283.912
 margin_bottom = 181.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 4 )
@@ -57,17 +58,32 @@ text = "Restart"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer"]
 margin_top = 201.0
-margin_right = 317.0
+margin_right = 492.0
 margin_bottom = 201.0
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
-margin_left = 103.0
+margin_left = 191.0
 margin_top = 221.0
-margin_right = 212.912
+margin_right = 300.912
 margin_bottom = 254.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 4 )
 text = "Main Menu"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+margin_top = 274.0
+margin_right = 492.0
+margin_bottom = 274.0
+
+[node name="HintLabel" type="Label" parent="VBoxContainer"]
+margin_top = 294.0
+margin_right = 492.0
+margin_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_fonts/font = ExtResource( 4 )
+text = "Tip: <some quite long string goes here here here here here>"
+align = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_AfterDieHUD_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
