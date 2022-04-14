@@ -42,7 +42,7 @@ public class Main : Node2D
 		if (Input.IsActionJustPressed("restart")) GetTree().ReloadCurrentScene();
 
 		// Increase speed
-		SpeedMultiplier = Mathf.Min(SpeedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);
+		if (player.isAlive) SpeedMultiplier = Mathf.Min(SpeedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);
 	}
 
 	private void OnPlayerDied()

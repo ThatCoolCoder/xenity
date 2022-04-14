@@ -16,6 +16,7 @@ public class Player : KinematicBody2D
 	[Export] private float maxJumpSpeed = 1000;
 	[Export] private float postFallJumpThreshold = 0.15f; // can jump if was on ground this many or less seconds ago
 	[Export] private float dropAcceleration = 5000; // when down key is pressed, player drops at this rate
+	public bool isAlive = true;
 	public Vector2 Velocity = Vector2.Zero;
 	private AnimatedSprite sprite;
 	private float jumpStartTime; // time at which current jump was started
@@ -23,7 +24,6 @@ public class Player : KinematicBody2D
 	private float lastOnFloor; // time at which player was last on floor
 	private float gravity = (float) (int) ProjectSettings.GetSetting("physics/2d/default_gravity");
 	private PackedScene dieEffectPrefab = GD.Load<PackedScene>("res://scenes/PlayerDieEffect.tscn");
-	private bool isAlive = true;
 
 	public event Action OnDie;
 
