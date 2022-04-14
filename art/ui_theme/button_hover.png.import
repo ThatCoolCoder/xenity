@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/button_texture.png-091fdf23d995fe9966b824835a245ecd.stex"
+path="res://.import/button_hover.png-7fb37c3d42c13d9f9dfe808df598e249.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/button_texture.png"
-dest_files=[ "res://.import/button_texture.png-091fdf23d995fe9966b824835a245ecd.stex" ]
+source_file="res://art/ui_theme/button_hover.png"
+dest_files=[ "res://.import/button_hover.png-7fb37c3d42c13d9f9dfe808df598e249.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_chaser_particle.png-6184b9fe906e3dfbbb46c05327f3fc7a.stex"
+path="res://.import/button_normal.png-b073a3d95d855fff656732621d028e91.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player_chaser_particle.png"
-dest_files=[ "res://.import/player_chaser_particle.png-6184b9fe906e3dfbbb46c05327f3fc7a.stex" ]
+source_file="res://art/ui_theme/button_normal.png"
+dest_files=[ "res://.import/button_normal.png-b073a3d95d855fff656732621d028e91.stex" ]
 
 [params]
 

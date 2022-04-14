@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/StartScreenCamera.cs" type="Script" id=6]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/ui_theme.tres" type="Theme" id=8]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 3 )
@@ -37,6 +38,7 @@ margin_top = -10.0
 margin_right = 6.0
 margin_bottom = 10.0
 grow_horizontal = 2
+theme = ExtResource( 8 )
 custom_fonts/font = ExtResource( 1 )
 text = "Play"
 

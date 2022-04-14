@@ -38,6 +38,8 @@ public class Main : Node2D
 		// Update score
 		float distanceTravelled = player.GlobalPosition.x - startPosition.GlobalPosition.x;
 		Score = Mathf.Max((int) (distanceTravelled / 10f), Score);
+		
+		if (Input.IsActionJustPressed("restart")) GetTree().ReloadCurrentScene();
 
 		// Increase speed
 		SpeedMultiplier = Mathf.Min(SpeedMultiplier + speedMultiplierIncrement * delta, maxSpeedMultiplier);

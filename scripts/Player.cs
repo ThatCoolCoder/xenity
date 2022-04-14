@@ -6,7 +6,8 @@ public class Player : KinematicBody2D
 	// Player controller
 	// - Left/right movement with acceleration
 	// - Variable height jump
-	// - Animation control
+	// - Fall more quickly when pressing down
+	// - Setting animation
 
 	[Export] private float maxMoveSpeed = 400;
 	[Export] private float moveAcceleration = 1200;
@@ -14,6 +15,7 @@ public class Player : KinematicBody2D
 	[Export] private float fullJumpDuration = 0.6f; // how long to hold jump button to get a full-height jump
 	[Export] private float maxJumpSpeed = 1000;
 	[Export] private float postFallJumpThreshold = 0.15f; // can jump if was on ground this many or less seconds ago
+	[Export] private float dropAcceleration = 5000; // when down key is pressed, player drops at this rate
 	public Vector2 Velocity = Vector2.Zero;
 	private AnimatedSprite sprite;
 	private float jumpStartTime; // time at which current jump was started
@@ -48,7 +50,7 @@ public class Player : KinematicBody2D
 		float xAcceleration = 0;
 		if (Input.IsActionPressed("move_right")) xAcceleration += moveAcceleration;
 		if (Input.IsActionPressed("move_left")) xAcceleration -= moveAcceleration;
-		if (Input.IsActionJustPressed("jump") && lastOnFloor + postFallJumpThreshold * 1000 > OS.GetTicksMsec() && !jumpInProgress)
+		if (Input.IsActionPressed("jump") && lastOnFloor + postFallJumpThreshold * 1000 > OS.GetTicksMsec() && !jumpInProgress)
 		{
 			Velocity.y = -maxJumpSpeed;
 			jumpStartTime = OS.GetTicksMsec();
@@ -61,6 +63,7 @@ public class Player : KinematicBody2D
 			float newJumpVelocity = -maxJumpSpeed * Mathf.Min(1, timeSinceJumpStarted / fullJumpDuration);
 			Velocity.y = Mathf.Max(newJumpVelocity, Velocity.y);
 		}
+		if (Input.IsActionPressed("drop") && ! IsOnFloor()) Velocity.y += dropAcceleration * delta;
 
 		if (xAcceleration == 0)
 			Velocity.x = Utils.ConvergeValue(Velocity.x, 0, brakingAcceleration * delta);
