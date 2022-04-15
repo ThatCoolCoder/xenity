@@ -12,7 +12,7 @@ public class AfterDieHUD : Control
 	{
 		"Changing direction regularly makes it harder to predict your movement",
 		"Sometimes you need to go backwards briefly to evade the spikes",
-		"You'll survive a lot longer if you don't touch the enemies",
+		"You would survive a lot longer if you don't touch the enemies",
 		"You can press R to restart quickly"
 	};
 	
@@ -22,7 +22,7 @@ public class AfterDieHUD : Control
 
 		if (Visible)
 		{
-			// Set score label
+			// Show score
 			int highScore = HighScoreManager.LoadHighScore();
 			GetNode<Label>("VBoxContainer/ScoreLabel").Text = highScore == Main.Score ?
 				$"Score: {Main.Score} - New Best!" :

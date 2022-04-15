@@ -202,4 +202,5 @@ profileName = "background"
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/PlayButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MadeBy/LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="meta_clicked" from="CanvasLayer/Control/Credits/Text" to="." method="_on_CreditsText_meta_clicked"]
 [connection signal="pressed" from="CanvasLayer/Control/Credits/ExitCreditsButton" to="." method="_on_ExitCreditsButton_pressed"]

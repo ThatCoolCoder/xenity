@@ -32,4 +32,11 @@ public class StartScreen : Node2D
 	{
 		animationPlayer.Play("hide_credits");
 	}
+
+
+	private void _on_CreditsText_meta_clicked(string meta)
+	{
+		OS.ShellOpen(meta);
+	}
+
 }
