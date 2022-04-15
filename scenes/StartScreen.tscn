@@ -43,6 +43,7 @@ tracks/0/keys = {
 }
 
 [node name="StartScreen" type="Node2D"]
+position = Vector2( 1, 0 )
 script = ExtResource( 3 )
 moreProjectsUrl = "https://github.com/ThatCoolCoder"
 
@@ -73,7 +74,7 @@ margin_right = 142.0
 margin_bottom = 72.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 2 )
-text = "Xonotux"
+text = "Xenity"
 align = 1
 
 [node name="Spacer" type="Control" parent="CanvasLayer/Control/VBoxContainer"]
@@ -145,7 +146,7 @@ align = 1
 [node name="Text" type="RichTextLabel" parent="CanvasLayer/Control/Credits"]
 margin_top = 89.0
 margin_right = 1024.0
-margin_bottom = 323.0
+margin_bottom = 375.0
 custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[center]
@@ -156,6 +157,8 @@ Rumbling adapted from [url=https://freesound.org/people/LudwigMueller/sounds/202
 Other sound effects made with [url=https://github.com/ttencate/jfxr]JFXR[/url]
 
 [url=https://freesound.org/people/Clacksberg/sounds/506324]Background music by Clacksberg on freesound.org (CC0)[/url]
+
+Font is [url=https://fonts.google.com/specimen/Cabin]Cabin[/url] by Pablo Impallari and Rodrigo Fuenzalida (Open Font License)
 [/center]"
 text = "
 Art, programming and design by ThatCoolCoder
@@ -165,14 +168,16 @@ Rumbling adapted from sound by LudwigMueller on freesound.org (CC0)
 Other sound effects made with JFXR
 
 Background music by Clacksberg on freesound.org (CC0)
+
+Font is Cabin by Pablo Impallari and Rodrigo Fuenzalida (Open Font License)
 "
 fit_content_height = true
 
 [node name="ExitCreditsButton" type="Button" parent="CanvasLayer/Control/Credits"]
 margin_left = 483.0
-margin_top = 363.0
+margin_top = 415.0
 margin_right = 539.912
-margin_bottom = 396.497
+margin_bottom = 448.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Back"

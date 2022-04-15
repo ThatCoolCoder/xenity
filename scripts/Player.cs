@@ -68,11 +68,11 @@ public class Player : KinematicBody2D
 		if (xAcceleration == 0)
 			Velocity.x = Utils.ConvergeValue(Velocity.x, 0, brakingAcceleration * delta);
 		
-		Velocity.x += xAcceleration * delta;
+		Velocity.x += xAcceleration * delta * Main.SpeedMultiplier;
 		Velocity.x = Mathf.Clamp(Velocity.x, -maxMoveSpeed, maxMoveSpeed);
 		
 		HandleCollisions();
-		Velocity = MoveAndSlide(Velocity * Main.SpeedMultiplier, Vector2.Up) / Main.SpeedMultiplier;
+		if (Main.SpeedMultiplier > 0) Velocity = MoveAndSlide(Velocity * Main.SpeedMultiplier, Vector2.Up) / Main.SpeedMultiplier;
 	}
 
 	private void SetAnimation()

@@ -5,6 +5,7 @@
 [node name="EnemySpawner" type="Node2D"]
 position = Vector2( -2, 0 )
 script = ExtResource( 1 )
+Enabled = false
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
@@ -14,4 +15,5 @@ collision_mask = 2
 [node name="FirstEnemyDelay" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-autostart = true
+
+[connection signal="timeout" from="FirstEnemyDelay" to="." method="_on_FirstEnemyTimer_timeout"]

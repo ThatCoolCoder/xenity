@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/GroundSlab.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://art/sounds/player_chaser_rumble.mp3" type="AudioStream" id=12]
 [ext_resource path="res://art/sounds/506324__clacksberg__cosmic-minimal-music-fragment.mp3" type="AudioStream" id=13]
 [ext_resource path="res://scripts/ResumingAudio.cs" type="Script" id=14]
+[ext_resource path="res://scenes/Instructions.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 300 )
@@ -26,7 +27,7 @@ script = ExtResource( 6 )
 [node name="WorldEnvironment" parent="." instance=ExtResource( 9 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 300 )
+position = Vector2( 512, 381 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 show_behind_parent = true
@@ -41,13 +42,16 @@ drag_margin_right = 0.0
 drag_margin_bottom = 1.0
 
 [node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 512, 382 )
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 6 )
 groundEnemyProbability = 0.015
 airEnemyProbability = 0.03
 playerPath = NodePath("../Player")
+
+[node name="Instructions" parent="." instance=ExtResource( 15 )]
+position = Vector2( 215, 39 )
 
 [node name="PlayerChaser" type="Node2D" parent="."]
 position = Vector2( 512, 0 )
@@ -119,8 +123,8 @@ attenuation = 1.68179
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0
 
-[node name="GroundSlab" parent="." instance=ExtResource( 2 )]
-position = Vector2( -512, 300 )
+[node name="StartingGround" parent="." instance=ExtResource( 2 )]
+position = Vector2( -512, 400 )
 Size = Vector2( 1536, 300 )
 
 [node name="AfterPlayerDieTimer" type="Timer" parent="."]
@@ -129,6 +133,7 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 7 )]
+mouse_filter = 1
 
 [node name="AfterDieHUD" parent="CanvasLayer" instance=ExtResource( 10 )]
 visible = false

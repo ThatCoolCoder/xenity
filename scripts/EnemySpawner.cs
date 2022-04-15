@@ -20,6 +20,7 @@ public class EnemySpawner : Node2D
 	[Export] private NodePath playerPath;
 	private Player player;
 	private Timer firstEnemyTimer;
+	private bool firstEnemyTimerFinished;
 	private static Random random = new Random();
 
 	private List<EnemyType> groundEnemies = new List<EnemyType>
@@ -56,9 +57,18 @@ public class EnemySpawner : Node2D
 		firstEnemyTimer = GetNode<Timer>("FirstEnemyDelay");
 	}
 
+
+	private void _on_FirstEnemyTimer_timeout()
+	{
+		firstEnemyTimerFinished = true;
+	}
+
+
 	public override void _PhysicsProcess(float delta)
 	{
-		if (Enabled && firstEnemyTimer.TimeLeft == 0) SpawnEnemies();
+		if (! firstEnemyTimerFinished && Enabled && firstEnemyTimer.TimeLeft == 0) firstEnemyTimer.Start();
+
+		if (Enabled && firstEnemyTimerFinished) SpawnEnemies();
 	}
 
 	private void SpawnEnemies()

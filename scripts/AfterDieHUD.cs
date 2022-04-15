@@ -12,8 +12,9 @@ public class AfterDieHUD : Control
 	{
 		"Changing direction regularly makes it harder to predict your movement",
 		"Sometimes you need to go backwards briefly to evade the spikes",
-		"You would survive a lot longer if you don't touch the enemies",
-		"You can press R to restart quickly"
+		"You will survive a lot longer if you don't touch the enemies",
+		"You can press R to restart quickly",
+		"You can also play the game through a joystick or controller",
 	};
 	
 	private void _on_AfterDieHUD_visibility_changed()
