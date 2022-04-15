@@ -10,7 +10,8 @@ config_version=4
 
 [application]
 
-config/name="Unnamed Predictive Game"
+config/name="Xenity"
+config/description="Infinite-runner game that predicts your movement and spawns traps"
 run/main_scene="res://scenes/StartScreen.tscn"
 config/icon="res://icon.png"
 

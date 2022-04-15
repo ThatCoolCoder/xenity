@@ -38,6 +38,14 @@ region = Rect2( 0, 120, 16, 24 )
 atlas = ExtResource( 3 )
 region = Rect2( 0, 144, 16, 24 )
 
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 27 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 24 )
+
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 24 )
@@ -58,14 +66,6 @@ region = Rect2( 0, 72, 16, 24 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 96, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 16, 27 )
-
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
@@ -73,26 +73,26 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 16 ) ],
 "loop": true,
-"name": "move_right",
-"speed": 20.0
+"name": "fall",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 15 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 16 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
-"name": "fall",
-"speed": 5.0
+"name": "move_right",
+"speed": 20.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 6, 11 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 2 )
 

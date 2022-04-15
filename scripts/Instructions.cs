@@ -45,6 +45,10 @@ public class Instructions : Node2D
 				file.Open(showInstructionsFilePath, File.ModeFlags.Write);
 				file.Store8(0);
 			}
+			catch
+			{
+				GD.PushWarning($"Failed writing to {showInstructionsFilePath}");
+			}
 			finally
 			{
 				file.Close();

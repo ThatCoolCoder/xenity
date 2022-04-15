@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unnamed Predictive Game", "Unnamed Predictive Game.csproj", "{D2AF0BE3-66C5-4EF2-B66B-6721F8C14B65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenity", "Xenity.csproj", "{D2AF0BE3-66C5-4EF2-B66B-6721F8C14B65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

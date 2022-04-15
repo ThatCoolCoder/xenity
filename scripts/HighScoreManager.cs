@@ -11,15 +11,12 @@ public static class HighScoreManager
 
         using (var file = new File())
         {
-            try
+            if (file.FileExists(scoreFilePath))
             {
                 file.Open(scoreFilePath, File.ModeFlags.Read);
                 return (int) file.Get32();
             }
-            catch
-            {
-                return 0;
-            }
+            else return 0;
         }
     }
 
