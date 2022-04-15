@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
@@ -8,45 +8,178 @@
 [ext_resource path="res://scripts/StartScreenCamera.cs" type="Script" id=6]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://resources/ui_theme.tres" type="Theme" id=8]
+[ext_resource path="res://resources/smaller_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://art/sounds/506324__clacksberg__cosmic-minimal-music-fragment.mp3" type="AudioStream" id=10]
+[ext_resource path="res://scripts/ResumingAudio.cs" type="Script" id=11]
+
+[sub_resource type="Animation" id=2]
+resource_name = "hide_credits"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( -1024, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "show_credits"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1024, 0 ) ]
+}
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 3 )
+moreProjectsUrl = "https://github.com/ThatCoolCoder"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -71.0
-margin_top = -132.5
-margin_right = 71.0
-margin_bottom = 132.5
+margin_left = 421.0
+margin_top = 147.5
+margin_right = 563.0
+margin_bottom = 412.5
 grow_horizontal = 2
 grow_vertical = 2
-custom_constants/separation = 50
+custom_constants/separation = 30
 alignment = 1
 
-[node name="GameTitle" type="Label" parent="CanvasLayer/VBoxContainer"]
-margin_top = 59.0
+[node name="GameTitle" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+margin_top = 23.0
 margin_right = 142.0
-margin_bottom = 108.0
+margin_bottom = 72.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 2 )
 text = "Xonotux"
 align = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CanvasLayer/Control/VBoxContainer"]
+margin_top = 102.0
+margin_right = 142.0
+margin_bottom = 102.0
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 margin_left = 34.0
-margin_top = 158.0
+margin_top = 132.0
 margin_right = 106.912
-margin_bottom = 205.497
+margin_bottom = 179.497
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme = ExtResource( 8 )
 custom_fonts/font = ExtResource( 1 )
 text = "Play"
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+margin_left = 33.0
+margin_top = 209.0
+margin_right = 107.912
+margin_bottom = 242.497
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 9 )
+text = "Credits"
+
+[node name="MadeBy" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 320.5
+margin_top = 525.0
+margin_right = 663.5
+margin_bottom = 550.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MadeBy"]
+margin_right = 219.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+text = "Made by ThatCoolCoder -"
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/Control/MadeBy"]
+margin_left = 223.0
+margin_right = 343.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+text = "Other projects"
+
+[node name="Credits" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1024.0
+margin_top = 55.0
+margin_right = 2008.0
+margin_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 40
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/Credits"]
+margin_right = 1024.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+text = "Credits:"
+align = 1
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/Control/Credits"]
+margin_top = 89.0
+margin_right = 1024.0
+margin_bottom = 323.0
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center]
+Art, programming and design by ThatCoolCoder
+
+Rumbling adapted from [url=https://freesound.org/people/LudwigMueller/sounds/202517/]sound by LudwigMueller on freesound.org (CC0)[/url]
+
+Other sound effects made with [url=https://github.com/ttencate/jfxr]JFXR[/url]
+
+[url=https://freesound.org/people/Clacksberg/sounds/506324]Background music by Clacksberg on freesound.org (CC0)[/url]
+[/center]"
+text = "
+Art, programming and design by ThatCoolCoder
+
+Rumbling adapted from sound by LudwigMueller on freesound.org (CC0)
+
+Other sound effects made with JFXR
+
+Background music by Clacksberg on freesound.org (CC0)
+"
+fit_content_height = true
+
+[node name="ExitCreditsButton" type="Button" parent="CanvasLayer/Control/Credits"]
+margin_left = 483.0
+margin_top = 363.0
+margin_right = 539.912
+margin_bottom = 396.497
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 9 )
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hide_credits = SubResource( 2 )
+anims/show_credits = SubResource( 1 )
 
 [node name="Background" parent="." instance=ExtResource( 7 )]
 
@@ -60,4 +193,13 @@ anchor_mode = 0
 current = true
 script = ExtResource( 6 )
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+script = ExtResource( 11 )
+profileName = "background"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/PlayButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MadeBy/LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Credits/ExitCreditsButton" to="." method="_on_ExitCreditsButton_pressed"]

@@ -11,7 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )
 script = ExtResource( 3 )
-hints = PoolStringArray( "Changing direction regularly makes it harder to predict your movement", "Sometimes you need to go backwards to avoid dying", "Press R to restart quickly" )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5

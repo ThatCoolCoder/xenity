@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/player_chaser_rumble.mp3-a05aec7c825fa507cf4a60ea1edeff9d.mp3str"
+
+[deps]
+
+source_file="res://art/sounds/player_chaser_rumble.mp3"
+dest_files=[ "res://.import/player_chaser_rumble.mp3-a05aec7c825fa507cf4a60ea1edeff9d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
