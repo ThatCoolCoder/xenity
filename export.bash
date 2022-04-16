@@ -39,7 +39,7 @@ read input
 if [ "$input" = "y" ]; then 
     current_commit=$(git rev-parse HEAD)
     git checkout gh-pages
-    rm -v !(".git"|".gitignore") 
+    rm -v !(".git"|".gitignore"|"exports/") 
     cp exports/$PROJECT_NAME-html/* .
     git add .
     git commit -m "deploy at $current_commit"
