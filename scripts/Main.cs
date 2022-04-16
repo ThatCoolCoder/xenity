@@ -66,7 +66,7 @@ public class Main : Node2D
 		// Pause game 
 		SpeedMultiplier = 0;
 		
-		afterPlayerDieTimer.Start();
+		if (afterPlayerDieTimer.IsInsideTree()) afterPlayerDieTimer.Start();
 		if (HighScoreManager.LoadHighScore() < Score)
 		{
 			HighScoreManager.SaveHighScore(Score);

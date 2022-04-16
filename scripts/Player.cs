@@ -92,7 +92,7 @@ public class Player : KinematicBody2D
 		isAlive = false;
 		sprite.Hide();
 		var dieEffect = dieEffectPrefab.Instance<PlayerDieEffect>();
-		AddChild(dieEffect);
+		CallDeferred("add_child", dieEffect);
 		OnDie?.Invoke();
 	}
 
@@ -106,13 +106,13 @@ public class Player : KinematicBody2D
 		if (typeof(StaticBody2D).IsAssignableFrom(collider.GetType()))
 		{
 			var colliderBody = (StaticBody2D) collider;
-			if (colliderBody.IsInGroup("kills_player")) Die();
+			if (colliderBody.IsInGroup("kills_player") && isAlive) Die();
 		}
 	}
 
 	private void _on_VisibilityNotifier2D_screen_exited()
 	{
-		Die();
+		if (isAlive) Die();
 	}
 
 

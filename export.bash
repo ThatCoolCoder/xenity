@@ -14,7 +14,7 @@ info() {
 export_as() {
     info "Exporting $1..."
     mkdir -p exports/$(dirname $2)
-    godot-mono --export "$1" exports/$2 --no-window > /dev/null
+    godot-mono --export "$1" exports/$2 --no-window
 
     if [[ $2 != *.zip ]]; then
         pushd exports > /dev/null
