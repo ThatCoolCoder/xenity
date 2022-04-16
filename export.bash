@@ -1,4 +1,5 @@
 #!/bin/bash
+shopt -s extglob
 
 PROJECT_NAME="Xenity"
 
