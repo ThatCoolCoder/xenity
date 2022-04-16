@@ -37,12 +37,11 @@ printf "\nPush to github pages? [y/N] "
 read input
 if [ "$input" = "y" ]; then 
     current_commit=$(git rev-parse HEAD)
-    cd exports
-    [ ! -d "gh-pages" ] && git worktree add gh-pages
-    cd gh-pages
-    git rm -r .
-    cp ../$PROJECT_NAME-html/* .
+    git checkout gh-pages
+    rm -v !(".git"|".gitignore") 
+    cp exports/$PROJECT_NAME-html/* .
     git add .
     git commit -m "deploy at $current_commit"
-    git push origin gh-pages
+    git push
+    git checkout main
 fi
