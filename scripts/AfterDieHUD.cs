@@ -15,6 +15,8 @@ public class AfterDieHUD : Control
 		"You will survive a lot longer if you don't touch the enemies",
 		"You can press R to restart quickly",
 		"You can also play the game through a joystick or controller",
+		"Getting bad performance? Try turning down the graphics settings in the options menu",
+		"This game isn't meant to be easy"
 	};
 	
 	private void _on_AfterDieHUD_visibility_changed()
