@@ -8,6 +8,7 @@ public class StartScreen : Node2D
 
 	public override void _Ready()
 	{
+		GameOptions.Load();
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
@@ -21,6 +22,16 @@ public class StartScreen : Node2D
 		OS.ShellOpen(moreProjectsUrl);
 	}
 
+	private void _on_OptionsButton_pressed()
+	{
+		animationPlayer.Play("show_options");
+	}
+
+	private void _on_ExitOptionsButton_pressed()
+	{
+		animationPlayer.Play("hide_options");
+		GameOptions.Save();
+	}
 
 	private void _on_CreditsButton_pressed()
 	{
@@ -36,6 +47,7 @@ public class StartScreen : Node2D
 
 	private void _on_CreditsText_meta_clicked(string meta)
 	{
+		// Open link when clicked in credits menu
 		OS.ShellOpen(meta);
 	}
 

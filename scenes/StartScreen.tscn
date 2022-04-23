@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://resources/smaller_font.tres" type="DynamicFont" id=9]
 [ext_resource path="res://art/sounds/506324__clacksberg__cosmic-minimal-music-fragment.mp3" type="AudioStream" id=10]
 [ext_resource path="res://scripts/BackgroundAudio.cs" type="Script" id=11]
+
+[sub_resource type="Theme" id=5]
 
 [sub_resource type="Animation" id=2]
 resource_name = "hide_credits"
@@ -27,6 +29,21 @@ tracks/0/keys = {
 "values": [ Vector2( -1024, 0 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "hide_options"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1024, 0 ), Vector2( 0, 0 ) ]
+}
+
 [sub_resource type="Animation" id=1]
 resource_name = "show_credits"
 tracks/0/type = "value"
@@ -40,6 +57,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -1024, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "show_options"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1024, 0 ) ]
 }
 
 [node name="StartScreen" type="Node2D"]
@@ -69,35 +101,42 @@ custom_constants/separation = 30
 alignment = 1
 
 [node name="GameTitle" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
-margin_top = 23.0
 margin_right = 142.0
-margin_bottom = 72.0
+margin_bottom = 49.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 2 )
 text = "Xenity"
 align = 1
 
 [node name="Spacer" type="Control" parent="CanvasLayer/Control/VBoxContainer"]
-margin_top = 102.0
+margin_top = 79.0
 margin_right = 142.0
-margin_bottom = 102.0
+margin_bottom = 79.0
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 margin_left = 34.0
-margin_top = 132.0
+margin_top = 109.0
 margin_right = 106.912
-margin_bottom = 179.497
+margin_bottom = 156.497
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme = ExtResource( 8 )
 custom_fonts/font = ExtResource( 1 )
 text = "Play"
 
+[node name="OptionsButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+margin_left = 29.0
+margin_top = 186.0
+margin_right = 112.912
+margin_bottom = 219.497
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 9 )
+text = "Options"
+
 [node name="CreditsButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 margin_left = 33.0
-margin_top = 209.0
+margin_top = 249.0
 margin_right = 107.912
-margin_bottom = 242.497
+margin_bottom = 282.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Credits"
@@ -125,11 +164,53 @@ margin_bottom = 25.0
 custom_fonts/font = ExtResource( 9 )
 text = "Other projects"
 
+[node name="Options" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1024.0
+margin_top = 100.0
+margin_right = -40.0
+margin_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 20
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/Options"]
+margin_right = 1024.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+text = "Options:"
+align = 1
+
+[node name="MovingMusicCheckButton" type="CheckButton" parent="CanvasLayer/Control/Options"]
+margin_left = 412.0
+margin_top = 69.0
+margin_right = 610.912
+margin_bottom = 109.497
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 9 )
+text = "Moving Music"
+flat = true
+
+[node name="Spacer" type="Control" parent="CanvasLayer/Control/Options"]
+margin_top = 129.0
+margin_right = 1024.0
+margin_bottom = 129.0
+
+[node name="ExitOptionsButton" type="Button" parent="CanvasLayer/Control/Options"]
+margin_left = 483.0
+margin_top = 149.0
+margin_right = 539.912
+margin_bottom = 182.497
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 9 )
+text = "Back"
+
 [node name="Credits" type="VBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1024.0
-margin_top = 102.0
+margin_top = 100.0
 margin_right = 2008.0
 margin_bottom = 560.0
 grow_horizontal = 2
@@ -182,9 +263,24 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Back"
 
+[node name="ParticleQualityDropDown" type="OptionButton" parent="CanvasLayer/Control"]
+margin_left = -78.0
+margin_top = 193.0
+margin_right = -12.0876
+margin_bottom = 226.497
+size_flags_horizontal = 4
+theme = SubResource( 5 )
+custom_fonts/font = ExtResource( 9 )
+text = "Test"
+expand_icon = true
+items = [ "Test", null, false, 0, null, "Test 2", null, false, 1, null ]
+selected = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide_credits = SubResource( 2 )
+anims/hide_options = SubResource( 3 )
 anims/show_credits = SubResource( 1 )
+anims/show_options = SubResource( 4 )
 
 [node name="Background" parent="." instance=ExtResource( 7 )]
 
@@ -206,7 +302,9 @@ profileName = "background"
 oscillationOffset = 512.0
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/PlayButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MadeBy/LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Options/ExitOptionsButton" to="." method="_on_ExitOptionsButton_pressed"]
 [connection signal="meta_clicked" from="CanvasLayer/Control/Credits/Text" to="." method="_on_CreditsText_meta_clicked"]
 [connection signal="pressed" from="CanvasLayer/Control/Credits/ExitCreditsButton" to="." method="_on_ExitCreditsButton_pressed"]

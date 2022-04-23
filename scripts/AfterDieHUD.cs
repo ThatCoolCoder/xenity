@@ -7,7 +7,7 @@ public class AfterDieHUD : Control
 	// Display showing after you die showning score and asking to restart/go to main menu
 	// Also displays tips/hints
 	
-	// Would be great to export this so it can be edited in editor but Godot keeps resetting it if I do that
+	// Would be great to [Export] this so it can be edited in editor but Godot keeps resetting it if I do that, so do through code.
 	private List<string> hints = new List<string>()
 	{
 		"Changing direction regularly makes it harder to predict your movement",
@@ -16,7 +16,8 @@ public class AfterDieHUD : Control
 		"You can press R to restart quickly",
 		"You can also play the game through a joystick or controller",
 		"Getting bad performance? Try turning down the graphics settings in the options menu",
-		"This game isn't meant to be easy"
+		"This game isn't meant to be easy",
+		""
 	};
 	
 	private void _on_AfterDieHUD_visibility_changed()

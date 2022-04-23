@@ -11,7 +11,7 @@ class VariableQualityParticles : CPUParticles2D
 
     public override void _Ready()
     {
-        switch (GameOptions.ParticleQuality)
+        switch (GameOptions.Current.ParticleQuality)
         {
             case ParticleQuality.Disabled:
                 Amount = 1; // turns out you can't completely disable particles

@@ -11,16 +11,24 @@ class BackgroundAudio : ResumingAudio
     [Export] private float oscillationAmplitude = 512;
     [Export] private float oscillationOffset = 0;
 
+    // Use a static dictionary so that we can persist positions across loading scenes 
     private static Dictionary<string, float> sineInputs = new Dictionary<string, float>();
 
     public override void _Process(float delta)
     {
-        if (! sineInputs.ContainsKey(profileName)) sineInputs[profileName] = 0;
-        sineInputs[profileName] += delta;
+        if (GameOptions.Current.MovingMusicEnabled)
+        {
+            if (! sineInputs.ContainsKey(profileName)) sineInputs[profileName] = 0;
+            sineInputs[profileName] += delta;
 
-        Position = new Vector2(
-            Mathf.Sin(sineInputs[profileName] * Mathf.Tau / oscillationFrequency) * oscillationAmplitude + oscillationOffset,
-            Position.y);
+            Position = new Vector2(
+                Mathf.Sin(sineInputs[profileName] * Mathf.Tau / oscillationFrequency) * oscillationAmplitude + oscillationOffset,
+                Position.y);
+        }
+        else
+        {
+            Position = Vector2.Zero;
+        }
     }
 
 }
