@@ -10,6 +10,7 @@ public class EnemySpawner : Node2D
 	[Export] private float groundEnemyProbability = 1f / 40f;
 	[Export] private float airEnemyProbability = 0; // todo: make proper air enemies
 	[Export] private float predictionDistance = 0.85f; // predict position this many seconds in future
+	[Export] private float minEnemyInterval = 0.4f;
 	[Export] private float maxEnemyInterval = 1.5f;
 	[Export] private float rayCastVerticalOffset = -2000;
 	private float lastEnemySpawnTime = OS.GetTicksMsec();
@@ -73,20 +74,26 @@ public class EnemySpawner : Node2D
 
 	private void SpawnEnemies()
 	{
-		// Use player position prediction to spawn enemies 
+		// Use player position prediction to spawn enemies
 
-		var prediction = PredictPlayerPosition();
-		var enemyType = Utils.RandomElement(prediction.IsOnGround ? groundEnemies : airEnemies);
-		var enemyProbability = prediction.IsOnGround ? groundEnemyProbability : airEnemyProbability;
-
-		if (random.NextDouble() < enemyProbability || lastEnemySpawnTime + maxEnemyInterval * 1000 < OS.GetTicksMsec())
+		// Make a minimum interval between enemies
+		if (lastEnemySpawnTime + minEnemyInterval * 1000 < OS.GetTicksMsec())
 		{
-			var enemy = (BaseEnemy) enemyType.PackedScene.Instance();
-			var scale = (float) GD.RandRange(enemyType.MinScale, enemyType.MaxScale);
-			enemy.Scale = Vector2.One * scale;
-			AddChild(enemy);
-			enemy.GlobalPosition = prediction.Position + enemyType.PositionOffset * scale;
-			lastEnemySpawnTime = OS.GetTicksMsec();
+			var prediction = PredictPlayerPosition();
+			var enemyType = Utils.RandomElement(prediction.IsOnGround ? groundEnemies : airEnemies);
+			var enemyProbability = prediction.IsOnGround ? groundEnemyProbability : airEnemyProbability;
+
+			// Decide whether to spawn
+			if (random.NextDouble() < enemyProbability || lastEnemySpawnTime + maxEnemyInterval * 1000 < OS.GetTicksMsec())
+			{
+				// Instantiate
+				var enemy = (BaseEnemy) enemyType.PackedScene.Instance();
+				var scale = (float) GD.RandRange(enemyType.MinScale, enemyType.MaxScale);
+				enemy.Scale = Vector2.One * scale;
+				AddChild(enemy);
+				enemy.GlobalPosition = prediction.Position + enemyType.PositionOffset * scale;
+				lastEnemySpawnTime = OS.GetTicksMsec();
+			}
 		}
 	}
 
