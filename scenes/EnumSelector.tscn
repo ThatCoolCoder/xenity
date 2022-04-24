@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://art/ui_theme/small_arrow.png" type="Texture" id=2]
+
+[node name="EnumSelector" type="HBoxContainer"]
+margin_right = 125.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 105.0
+margin_bottom = 17.0
+text = "<selected item>"
+valign = 1
+
+[node name="Arrows" type="VBoxContainer" parent="."]
+margin_left = 109.0
+margin_right = 125.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+custom_constants/separation = 4
+
+[node name="Up" type="TextureButton" parent="Arrows"]
+margin_right = 16.0
+margin_bottom = 8.0
+texture_normal = ExtResource( 2 )
+
+[node name="Down" type="TextureButton" parent="Arrows"]
+margin_top = 12.0
+margin_right = 16.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 2 )
+flip_v = true
+
+[connection signal="pressed" from="Arrows/Up" to="." method="_on_UpArrow_pressed"]
+[connection signal="pressed" from="Arrows/Down" to="." method="_on_DownArrow_pressed"]

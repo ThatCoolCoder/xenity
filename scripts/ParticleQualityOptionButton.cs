@@ -1,4 +1,4 @@
-public class ParticleQualityOptionButton : EnumOptionButton<ParticleQuality>
+public class ParticleQualityOptionButton : EnumSelector<ParticleQuality>
 {
 	
 }
