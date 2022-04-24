@@ -27,7 +27,7 @@ class BackgroundAudio : ResumingAudio
         }
         else
         {
-            Position = Vector2.Zero;
+            Position = new Vector2(oscillationAmplitude, 0);
         }
     }
 

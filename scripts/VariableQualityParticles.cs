@@ -14,7 +14,7 @@ class VariableQualityParticles : CPUParticles2D
         switch (GameOptions.Current.ParticleQuality)
         {
             case ParticleQuality.Disabled:
-                Amount = 1; // turns out you can't completely disable particles
+                Amount = 1; // turns out you can't completely disable particles, so almost disable them
                 break;
             case ParticleQuality.Low:
                 Amount = lowQualityAmount;

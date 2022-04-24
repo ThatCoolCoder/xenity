@@ -24,13 +24,18 @@ public abstract class EnumSelector<TItem> : Control where TItem : Enum
 		{
 			selected = value;
 			label.Text = selected.ToString();
+			if (valueSet) OnChanged?.Invoke(); // prevent setting value when framework sets to default
+			valueSet = true;
 		}
 	}
 	private TItem selected;
+	private bool valueSet = false;
+	public event Action OnChanged;
 
 	public override void _Ready()
 	{
 		label = GetNode<Label>("Label");
+		label.AddFontOverride("font", Font);
 		itemNames = ((TItem[]) Enum.GetValues(typeof(TItem))).Select(x => x.ToString()).ToList();
 		Selected = Selected; // Update label text
 	}

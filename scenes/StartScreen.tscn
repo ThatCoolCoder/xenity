@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
@@ -12,9 +12,7 @@
 [ext_resource path="res://art/sounds/506324__clacksberg__cosmic-minimal-music-fragment.mp3" type="AudioStream" id=10]
 [ext_resource path="res://scripts/BackgroundAudio.cs" type="Script" id=11]
 [ext_resource path="res://scenes/EnumSelector.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scripts/ParticleQualityOptionButton.cs" type="Script" id=13]
-
-[sub_resource type="Theme" id=5]
+[ext_resource path="res://scripts/ParticleQualitySelector.cs" type="Script" id=13]
 
 [sub_resource type="Animation" id=2]
 resource_name = "hide_credits"
@@ -194,24 +192,36 @@ custom_fonts/font = ExtResource( 9 )
 text = "Moving Music"
 flat = true
 
-[node name="EnumSelector" parent="CanvasLayer/Control/Options" instance=ExtResource( 12 )]
-margin_left = 449.0
+[node name="ParticleQuality" type="HBoxContainer" parent="CanvasLayer/Control/Options"]
+margin_left = 410.0
 margin_top = 129.0
-margin_right = 574.0
-margin_bottom = 149.0
+margin_right = 613.0
+margin_bottom = 154.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Options/ParticleQuality"]
+margin_right = 74.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+text = "Particles:"
+
+[node name="Selector" parent="CanvasLayer/Control/Options/ParticleQuality" instance=ExtResource( 12 )]
+margin_left = 78.0
+margin_right = 203.0
 size_flags_horizontal = 4
 script = ExtResource( 13 )
+Font = ExtResource( 9 )
 
 [node name="Spacer" type="Control" parent="CanvasLayer/Control/Options"]
-margin_top = 169.0
+margin_top = 174.0
 margin_right = 1024.0
-margin_bottom = 169.0
+margin_bottom = 174.0
 
 [node name="ExitOptionsButton" type="Button" parent="CanvasLayer/Control/Options"]
 margin_left = 483.0
-margin_top = 189.0
+margin_top = 194.0
 margin_right = 539.912
-margin_bottom = 222.497
+margin_bottom = 227.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Back"
@@ -273,19 +283,6 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Back"
 
-[node name="ParticleQualityDropDown" type="OptionButton" parent="CanvasLayer/Control"]
-margin_left = -78.0
-margin_top = 193.0
-margin_right = -12.0876
-margin_bottom = 226.497
-size_flags_horizontal = 4
-theme = SubResource( 5 )
-custom_fonts/font = ExtResource( 9 )
-text = "Test"
-expand_icon = true
-items = [ "Test", null, false, 0, null, "Test 2", null, false, 1, null ]
-selected = 0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide_credits = SubResource( 2 )
 anims/hide_options = SubResource( 3 )
@@ -315,6 +312,7 @@ oscillationOffset = 512.0
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MadeBy/LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="toggled" from="CanvasLayer/Control/Options/MovingMusicCheckButton" to="." method="_on_MovingMusicCheckButton_toggled"]
 [connection signal="pressed" from="CanvasLayer/Control/Options/ExitOptionsButton" to="." method="_on_ExitOptionsButton_pressed"]
 [connection signal="meta_clicked" from="CanvasLayer/Control/Credits/Text" to="." method="_on_CreditsText_meta_clicked"]
 [connection signal="pressed" from="CanvasLayer/Control/Credits/ExitCreditsButton" to="." method="_on_ExitCreditsButton_pressed"]
