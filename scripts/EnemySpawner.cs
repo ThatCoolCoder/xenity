@@ -8,7 +8,7 @@ public class EnemySpawner : Node2D
 
 	[Export] public bool Enabled = true;
 	[Export] private float groundEnemyProbability = 1f / 40f;
-	[Export] private float airEnemyProbability = 0; // todo: make proper air enemies
+	[Export] private float airEnemyProbability = 0;
 	[Export] private float predictionDistance = 0.85f; // predict position this many seconds in future
 	[Export] private float minEnemyInterval = 0.4f;
 	[Export] private float maxEnemyInterval = 1.5f;
@@ -76,17 +76,17 @@ public class EnemySpawner : Node2D
 	{
 		// Use player position prediction to spawn enemies
 
-		// Make a minimum interval between enemies
+		// Ensure a minimum interval between enemies
 		if (lastEnemySpawnTime + minEnemyInterval * 1000 < OS.GetTicksMsec())
 		{
 			var prediction = PredictPlayerPosition();
 			var enemyType = Utils.RandomElement(prediction.IsOnGround ? groundEnemies : airEnemies);
 			var enemyProbability = prediction.IsOnGround ? groundEnemyProbability : airEnemyProbability;
 
-			// Decide whether to spawn
+			// Decide whether to spawn - random chance but also if the last enemy was spawned too long ago (enforce maximum interval)
 			if (random.NextDouble() < enemyProbability || lastEnemySpawnTime + maxEnemyInterval * 1000 < OS.GetTicksMsec())
 			{
-				// Instantiate
+				// Instantiate enemy and set up
 				var enemy = (BaseEnemy) enemyType.PackedScene.Instance();
 				var scale = (float) GD.RandRange(enemyType.MinScale, enemyType.MaxScale);
 				enemy.Scale = Vector2.One * scale;

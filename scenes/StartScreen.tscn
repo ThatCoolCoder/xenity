@@ -77,7 +77,6 @@ tracks/0/keys = {
 [node name="StartScreen" type="Node2D"]
 position = Vector2( 1, 0 )
 script = ExtResource( 3 )
-moreProjectsUrl = "https://github.com/ThatCoolCoder"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
