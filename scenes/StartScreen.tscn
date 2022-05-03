@@ -229,7 +229,7 @@ text = "Back"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1024.0
-margin_top = 100.0
+margin_top = 50.0
 margin_right = 2008.0
 margin_bottom = 560.0
 grow_horizontal = 2
@@ -246,7 +246,7 @@ align = 1
 [node name="Text" type="RichTextLabel" parent="CanvasLayer/Control/Credits"]
 margin_top = 69.0
 margin_right = 1024.0
-margin_bottom = 355.0
+margin_bottom = 407.0
 custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[center]
@@ -256,7 +256,9 @@ Rumbling adapted from [url=https://freesound.org/people/LudwigMueller/sounds/202
 
 Other sound effects made with [url=https://github.com/ttencate/jfxr]JFXR[/url]
 
-[url=https://freesound.org/people/Clacksberg/sounds/506324]Background music by Clacksberg on freesound.org (CC0)[/url]
+Art made in [url=https://github.com/Orama-Interactive/Pixelorama]Pixelorama[/url]
+
+[url=https://freesound.org/people/Clacksberg/sounds/506324]Background music[/url] by Clacksberg on freesound.org (CC0)
 
 Font is [url=https://fonts.google.com/specimen/Cabin]Cabin[/url] by Pablo Impallari and Rodrigo Fuenzalida (Open Font License)
 [/center]"
@@ -267,6 +269,8 @@ Rumbling adapted from sound by LudwigMueller on freesound.org (CC0)
 
 Other sound effects made with JFXR
 
+Art made in Pixelorama
+
 Background music by Clacksberg on freesound.org (CC0)
 
 Font is Cabin by Pablo Impallari and Rodrigo Fuenzalida (Open Font License)
@@ -275,9 +279,9 @@ fit_content_height = true
 
 [node name="ExitCreditsButton" type="Button" parent="CanvasLayer/Control/Credits"]
 margin_left = 483.0
-margin_top = 375.0
+margin_top = 427.0
 margin_right = 539.912
-margin_bottom = 408.497
+margin_bottom = 460.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Back"

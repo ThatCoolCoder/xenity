@@ -9,7 +9,8 @@ public class BaseEnemy : StaticBody2D
 	private AnimatedSprite sprite;
 	private CollisionShape2D collisionShape2D;
 
-	public bool fullyGrown = false;
+	public bool growing = true;
+	public bool crumbling = false;
 
 	public override void _Ready()
 	{
@@ -25,13 +26,28 @@ public class BaseEnemy : StaticBody2D
 		if (! visibilityNotifier.IsOnScreen()) QueueFree();
 	}
 
+	public virtual void Crumble()
+	{
+		// Make the enemy crumble and become ineffective. Used by power ups
+		if (! crumbling)
+		{
+			sprite.Animation = "crumbling";
+			crumbling = true;
+			growing = false;
+		}
+	}
+
 	private void _on_Sprite_animation_finished()
 	{
-		if (! fullyGrown)
+		if (growing)
 		{
 			sprite.Animation = "fullyGrown";
-			fullyGrown = true;
+			growing = false;
 			collisionShape2D.Disabled = false;
+		}
+		else if (crumbling)
+		{
+			QueueFree();
 		}
 	}
 }
