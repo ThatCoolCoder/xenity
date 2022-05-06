@@ -28,7 +28,7 @@ public class EnemySpawner : Node2D
 	{
 		new EnemyType()
 		{
-			PackedScene = ResourceLoader.Load<PackedScene>("res://scenes/SpikeEnemy.tscn"),
+			PackedScene = ResourceLoader.Load<PackedScene>("res://scenes/Enemies/SpikeEnemy.tscn"),
 			MinScale = 1,
 			MaxScale = 2,
 			PositionOffset = new Vector2(-8, -16)
@@ -38,7 +38,7 @@ public class EnemySpawner : Node2D
 	{
 		new EnemyType()
 		{
-			PackedScene = ResourceLoader.Load<PackedScene>("res://scenes/AirEnemy.tscn"),
+			PackedScene = ResourceLoader.Load<PackedScene>("res://scenes/Enemies/AirEnemy.tscn"),
 			MinScale = 1.5f,
 			MaxScale = 2.5f,
 			PositionOffset = new Vector2(-8, -16)

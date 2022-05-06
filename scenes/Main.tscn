@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/GroundSlab.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scripts/BackgroundAudio.cs" type="Script" id=14]
 [ext_resource path="res://scenes/Instructions.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scripts/VariableQualityParticles.cs" type="Script" id=16]
+[ext_resource path="res://scenes/PowerUps/PowerUpSpawner.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 300 )
@@ -136,6 +137,8 @@ attenuation = 1.68179
 
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0
+
+[node name="PowerUpSpawner" parent="." instance=ExtResource( 17 )]
 
 [node name="StartingGround" parent="." instance=ExtResource( 2 )]
 position = Vector2( -512, 400 )

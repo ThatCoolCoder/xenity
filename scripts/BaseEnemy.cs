@@ -5,12 +5,13 @@ public class BaseEnemy : StaticBody2D
 {
 	// Basic enemy behaviour, handles growing/appearing and deleting when off screen
 
+	[Export] private PackedScene CrumbleEffect;
+
 	private VisibilityNotifier2D visibilityNotifier;
 	private AnimatedSprite sprite;
 	private CollisionShape2D collisionShape2D;
 
 	public bool growing = true;
-	public bool crumbling = false;
 
 	public override void _Ready()
 	{
@@ -29,12 +30,12 @@ public class BaseEnemy : StaticBody2D
 	public virtual void Crumble()
 	{
 		// Make the enemy crumble and become ineffective. Used by power ups
-		if (! crumbling)
-		{
-			sprite.Animation = "crumbling";
-			crumbling = true;
-			growing = false;
-		}
+		if (CrumbleEffect == null) return;
+		var effect = CrumbleEffect.Instance<CPUParticles2D>();
+		effect.Position = Position;
+		effect.Emitting = true;
+		GetParent().AddChild(effect);
+		QueueFree();
 	}
 
 	private void _on_Sprite_animation_finished()
@@ -44,10 +45,6 @@ public class BaseEnemy : StaticBody2D
 			sprite.Animation = "fullyGrown";
 			growing = false;
 			collisionShape2D.Disabled = false;
-		}
-		else if (crumbling)
-		{
-			QueueFree();
 		}
 	}
 }
