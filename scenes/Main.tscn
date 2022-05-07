@@ -60,7 +60,7 @@ airEnemyProbability = 0.03
 playerPath = NodePath("../Player")
 
 [node name="Instructions" parent="." instance=ExtResource( 15 )]
-position = Vector2( 215, 39 )
+position = Vector2( 215, 5 )
 
 [node name="PlayerChaser" type="Node2D" parent="."]
 position = Vector2( 512, 0 )
@@ -135,10 +135,11 @@ autoplay = true
 max_distance = 600.0
 attenuation = 1.68179
 
+[node name="PowerUpSpawner" parent="." instance=ExtResource( 17 )]
+powerUpProbability = 0.002
+
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0
-
-[node name="PowerUpSpawner" parent="." instance=ExtResource( 17 )]
 
 [node name="StartingGround" parent="." instance=ExtResource( 2 )]
 position = Vector2( -512, 400 )

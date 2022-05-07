@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/523365__matrixxx__bomb-explosion.mp3-23b37891ab2d6377297d59b1d5029a85.mp3str"
+
+[deps]
+
+source_file="res://art/sounds/523365__matrixxx__bomb-explosion.mp3"
+dest_files=[ "res://.import/523365__matrixxx__bomb-explosion.mp3-23b37891ab2d6377297d59b1d5029a85.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

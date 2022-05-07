@@ -3,6 +3,7 @@ using Godot;
 
 public class AbstractPowerUp : Area2D
 {
+	[Export] private PackedScene pickUpEffect; // effect played when picked up
 	private bool activated;
 	protected bool deleteOnDeactivate = true;
 
@@ -16,6 +17,13 @@ public class AbstractPowerUp : Area2D
 				activated = true;
 				OnActivated();
 				Visible = false;
+
+				if (pickUpEffect != null)
+				{
+					var instance = pickUpEffect.Instance<Node2D>();
+					instance.Position = Position;
+					GetParent().AddChild(instance);
+				}
 			}
 		}
 	}

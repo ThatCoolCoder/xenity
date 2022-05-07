@@ -103,10 +103,13 @@ public class Player : KinematicBody2D
 
 	private void HandleCollision(object collider)
 	{
-		if (typeof(StaticBody2D).IsAssignableFrom(collider.GetType()))
+		if (collider != null)
 		{
-			var colliderBody = (StaticBody2D) collider;
-			if (colliderBody.IsInGroup("kills_player") && isAlive) Die();
+			if (collider is StaticBody2D)
+			{
+				var colliderBody = (StaticBody2D) collider;
+				if (colliderBody.IsInGroup("kills_player") && isAlive) Die();
+			}
 		}
 	}
 

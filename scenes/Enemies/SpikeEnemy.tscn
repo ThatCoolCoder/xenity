@@ -58,14 +58,13 @@ animations = [ {
 extents = Vector2( 8, 8 )
 
 [node name="SpikeEnemy" type="StaticBody2D" groups=["kills_player"]]
-position = Vector2( 0, -1 )
 script = ExtResource( 2 )
-CrumbleEffect = ExtResource( 4 )
+crumbleEffect = ExtResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "growing"
-frame = 2
+frame = 6
 speed_scale = 1.5
 playing = true
 centered = false

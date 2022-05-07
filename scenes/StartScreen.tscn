@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://resources/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=2]
@@ -13,6 +13,16 @@
 [ext_resource path="res://scripts/BackgroundAudio.cs" type="Script" id=11]
 [ext_resource path="res://scenes/EnumSelector.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/ParticleQualitySelector.cs" type="Script" id=13]
+[ext_resource path="res://resources/Cabin-Regular.ttf" type="DynamicFontData" id=14]
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -5
+font_data = ExtResource( 14 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "hide_credits"
@@ -75,8 +85,8 @@ tracks/0/keys = {
 }
 
 [node name="StartScreen" type="Node2D"]
-position = Vector2( 1, 0 )
 script = ExtResource( 3 )
+moreProjectsUrl = "https://github.com/ThatCoolCoder"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -229,7 +239,7 @@ text = "Back"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1024.0
-margin_top = 50.0
+margin_top = 2.0
 margin_right = 2008.0
 margin_bottom = 560.0
 grow_horizontal = 2
@@ -246,15 +256,21 @@ align = 1
 [node name="Text" type="RichTextLabel" parent="CanvasLayer/Control/Credits"]
 margin_top = 69.0
 margin_right = 1024.0
-margin_bottom = 407.0
-custom_fonts/normal_font = ExtResource( 9 )
+margin_bottom = 468.0
+custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[center]
 Art, programming and design by ThatCoolCoder
 
 Rumbling adapted from [url=https://freesound.org/people/LudwigMueller/sounds/202517/]sound by LudwigMueller on freesound.org (CC0)[/url]
 
-Other sound effects made with [url=https://github.com/ttencate/jfxr]JFXR[/url]
+[url=https://freesound.org/people/greenvwbeetle/sounds/244653/]Pop sound by greenvwbeetle on freesound.org (CC0)[/url]
+
+Explosion adapted from [url=https://freesound.org/people/MATRIXXX_/sounds/523365/]sound by MATRIXXX_ on freesound.org (CC0)[/url]
+
+Spike breaking sound adapted from [url=https://freesound.org/people/Samgd14/sounds/355340/]sound by Samgd14 on freesound.org (CC BY 3.0)[/url] 
+
+Other sound effects made with [url=https://github.com/ttencate/jfxr]JFXR[/url] or 
 
 Art made in [url=https://github.com/Orama-Interactive/Pixelorama]Pixelorama[/url]
 
@@ -267,7 +283,13 @@ Art, programming and design by ThatCoolCoder
 
 Rumbling adapted from sound by LudwigMueller on freesound.org (CC0)
 
-Other sound effects made with JFXR
+Pop sound by greenvwbeetle on freesound.org (CC0)
+
+Explosion adapted from sound by MATRIXXX_ on freesound.org (CC0)
+
+Spike breaking sound adapted from sound by Samgd14 on freesound.org (CC BY 3.0) 
+
+Other sound effects made with JFXR or 
 
 Art made in Pixelorama
 
@@ -279,9 +301,9 @@ fit_content_height = true
 
 [node name="ExitCreditsButton" type="Button" parent="CanvasLayer/Control/Credits"]
 margin_left = 483.0
-margin_top = 427.0
+margin_top = 488.0
 margin_right = 539.912
-margin_bottom = 460.497
+margin_bottom = 521.497
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 9 )
 text = "Back"

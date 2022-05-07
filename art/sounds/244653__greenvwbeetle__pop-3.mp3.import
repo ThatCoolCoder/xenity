@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/244653__greenvwbeetle__pop-3.mp3-e18ab3e3b252a9dd37f4463799ce842c.mp3str"
+
+[deps]
+
+source_file="res://art/sounds/244653__greenvwbeetle__pop-3.mp3"
+dest_files=[ "res://.import/244653__greenvwbeetle__pop-3.mp3-e18ab3e3b252a9dd37f4463799ce842c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/355340__samgd14__glass-breaking.mp3-8f021c2cb414a0a4b4cda0db08c24457.mp3str"
+
+[deps]
+
+source_file="res://art/sounds/355340__samgd14__glass-breaking.mp3"
+dest_files=[ "res://.import/355340__samgd14__glass-breaking.mp3-8f021c2cb414a0a4b4cda0db08c24457.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

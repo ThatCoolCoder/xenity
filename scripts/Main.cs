@@ -15,6 +15,7 @@ public class Main : Node2D
 	private Position2D startPosition;
 	private PlayerChaser playerChaser;
 	private EnemySpawner enemySpawner;
+	private PowerUpSpawner powerUpSpawner;
 	private Instructions instructions;
 	private Timer afterPlayerDieTimer;
 	private HUD HUD;
@@ -29,6 +30,7 @@ public class Main : Node2D
 		
 		playerChaser = GetNode<PlayerChaser>("PlayerChaser");
 		enemySpawner = GetNode<EnemySpawner>("EnemySpawner");
+		powerUpSpawner = GetNode<PowerUpSpawner>("PowerUpSpawner");
 		instructions = GetNode<Instructions>("Instructions");
 		instructions.ReadyToStart += StartGame;
 		afterPlayerDieTimer = GetNode<Timer>("AfterPlayerDieTimer");
@@ -58,6 +60,7 @@ public class Main : Node2D
 	{
 		gameStarted = true;
 		enemySpawner.Enabled = true;
+		powerUpSpawner.Enabled = true;
 		SpeedMultiplier = startingSpeedMultiplier;
 	}
 
@@ -65,6 +68,7 @@ public class Main : Node2D
 	{
 		// Pause game 
 		SpeedMultiplier = 0;
+		powerUpSpawner.Enabled = false;
 		
 		if (afterPlayerDieTimer.IsInsideTree()) afterPlayerDieTimer.Start();
 		if (HighScoreManager.LoadHighScore() < Score)

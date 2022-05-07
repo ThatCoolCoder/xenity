@@ -19,13 +19,14 @@ public class PowerUpSpawner : Node2D
 
 	public override void _Ready()
 	{
+		random.Randomize();
 		upwardRayCast = GetNode<RayCast2D>("UpwardRayCast");
 		downwardRayCast = GetNode<RayCast2D>("DownwardRayCast");
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
-		if (random.Randf() < powerUpProbability)
+		if (random.Randf() < powerUpProbability && Enabled)
 		{
 			// Calculate power up position, mainly using raycast to find passage top and bottom
 

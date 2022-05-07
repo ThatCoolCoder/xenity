@@ -10,7 +10,7 @@ public class EnemyDestroyer : TimedPowerUp
 		var enemies = GetTree().GetNodesInGroup("kills_player");
 		foreach (var enemy in enemies)
 		{
-			if (typeof(BaseEnemy).IsAssignableFrom(enemy.GetType()))
+			if (enemy is BaseEnemy)
 			{
 				((BaseEnemy) enemy).Crumble();
 			}

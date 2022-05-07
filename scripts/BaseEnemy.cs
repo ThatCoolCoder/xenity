@@ -5,7 +5,7 @@ public class BaseEnemy : StaticBody2D
 {
 	// Basic enemy behaviour, handles growing/appearing and deleting when off screen
 
-	[Export] private PackedScene CrumbleEffect;
+	[Export] private PackedScene crumbleEffect;
 
 	private VisibilityNotifier2D visibilityNotifier;
 	private AnimatedSprite sprite;
@@ -30,10 +30,10 @@ public class BaseEnemy : StaticBody2D
 	public virtual void Crumble()
 	{
 		// Make the enemy crumble and become ineffective. Used by power ups
-		if (CrumbleEffect == null || growing) return;
-		var effect = CrumbleEffect.Instance<CPUParticles2D>();
+		if (crumbleEffect == null || growing) return;
+
+		var effect = crumbleEffect.Instance<Node2D>();
 		effect.Position = Position;
-		effect.Emitting = true;
 		GetParent().AddChild(effect);
 		growing = false;
 		QueueFree();

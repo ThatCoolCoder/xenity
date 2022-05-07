@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/PowerUps/EnemyDestroyer.cs" type="Script" id=1]
 [ext_resource path="res://art/bomb_temp.png" type="Texture" id=2]
 [ext_resource path="res://scenes/PowerUps/TimedPowerUp.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/PowerUps/EnemyDestroyerPickUpEffect.tscn" type="PackedScene" id=4]
 
 [node name="EnemyDestroyer" instance=ExtResource( 3 )]
 script = ExtResource( 1 )
+pickUpEffect = ExtResource( 4 )
 
-[node name="Sprite" parent="." index="0"]
-scale = Vector2( 1.875, 1.875 )
-texture = ExtResource( 2 )
+[node name="GlowSprite" parent="." index="0"]
+position = Vector2( 26.496, 26.5056 )
+scale = Vector2( 52.992, 52.992 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0.0802879, 2.3065 )
+scale = Vector2( 0.987729, 1.07962 )
 
 [node name="Timer" parent="." index="2"]
+wait_time = 5.0
 one_shot = true
+
+[node name="Sprite" parent="." index="3"]
+position = Vector2( 1.58029, -6.70308 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
