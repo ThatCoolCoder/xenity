@@ -1,9 +1,9 @@
 using System;
 using Godot;
 
-public class EnemyDestroyer : AbstractPowerUp
+public class EnemyDestroyer : TimedPowerUp
 {
-	private float duration = 1.0f;
+	protected new bool deleteOnDeactivate = true;
 	
 	protected override void WhileActivated(float delta)
 	{

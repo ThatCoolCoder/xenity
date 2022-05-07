@@ -16,6 +16,9 @@ class BackgroundAudio : ResumingAudio
 
     public override void _Process(float delta)
     {
+        // Oscillate left-to-right if enabled
+         
+
         if (GameOptions.Current.MovingMusicEnabled)
         {
             if (! sineInputs.ContainsKey(profileName)) sineInputs[profileName] = 0;

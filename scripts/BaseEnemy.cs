@@ -30,11 +30,12 @@ public class BaseEnemy : StaticBody2D
 	public virtual void Crumble()
 	{
 		// Make the enemy crumble and become ineffective. Used by power ups
-		if (CrumbleEffect == null) return;
+		if (CrumbleEffect == null || growing) return;
 		var effect = CrumbleEffect.Instance<CPUParticles2D>();
 		effect.Position = Position;
 		effect.Emitting = true;
 		GetParent().AddChild(effect);
+		growing = false;
 		QueueFree();
 	}
 

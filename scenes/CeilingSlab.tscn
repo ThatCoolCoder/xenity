@@ -16,8 +16,8 @@ shader_param/draw_left_border = false
 shader_param/draw_right_border = false
 
 [node name="CeilingSlab" instance=ExtResource( 1 )]
-collision_layer = 1
-collision_mask = 1
+collision_layer = 5
+collision_mask = 5
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )

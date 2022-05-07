@@ -15,6 +15,7 @@ public class AbstractPowerUp : Area2D
 			{
 				activated = true;
 				OnActivated();
+				Visible = false;
 			}
 		}
 	}
@@ -32,8 +33,8 @@ public class AbstractPowerUp : Area2D
 	}
 
 
-	// Called when power up is first activatedf
+	// Called when power up is first activated
 	protected virtual void OnActivated() {}
 	protected virtual void WhileActivated(float delta) {}
 	protected virtual void OnDeactivated() {}
-}	
+}
