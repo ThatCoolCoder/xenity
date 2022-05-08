@@ -42,14 +42,14 @@ public abstract class EnumSelector<TItem> : Control where TItem : Enum
 	
 	private void _on_UpArrow_pressed()
 	{
-		int newValue = Mathf.Max(Convert.ToInt32(Selected) - 1, 0);
+		int newValue = Mathf.PosMod(Convert.ToInt32(Selected) + 1, itemNames.Count);
 		Selected = (TItem) Enum.Parse(typeof(TItem), newValue.ToString());
 	}
 
 
 	private void _on_DownArrow_pressed()
 	{
-		int newValue = Mathf.Min(Convert.ToInt32(Selected) + 1, itemNames.Count - 1);
+		int newValue = Mathf.PosMod(Convert.ToInt32(Selected) - 1, itemNames.Count);
 		Selected = (TItem) Enum.Parse(typeof(TItem), newValue.ToString());
 	}
 

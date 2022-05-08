@@ -10,6 +10,7 @@ public class BaseEnemy : StaticBody2D
 	private VisibilityNotifier2D visibilityNotifier;
 	private AnimatedSprite sprite;
 	private CollisionShape2D collisionShape2D;
+	private Timer growthTimer;
 
 	public bool growing = true;
 
@@ -19,6 +20,7 @@ public class BaseEnemy : StaticBody2D
 		sprite = GetNode<AnimatedSprite>("Sprite");
 		sprite.SpeedScale *= Main.SpeedMultiplier;
 		collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
+		growthTimer = GetNode<Timer>("GrowthTimer");
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -41,7 +43,9 @@ public class BaseEnemy : StaticBody2D
 
 	private void _on_Sprite_animation_finished()
 	{
-		if (growing)
+		// Randomly, the sprite thinks it has finished animation on the first frame,
+		// so have a timer to ensure a brief pause
+		if (growing && growthTimer.TimeLeft == 0)
 		{
 			sprite.Animation = "fullyGrown";
 			growing = false;

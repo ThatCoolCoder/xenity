@@ -48,7 +48,6 @@ stream = ExtResource( 13 )
 autoplay = true
 script = ExtResource( 14 )
 profileName = "background"
-oscillationAmplitude = 341.333
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 512, 382 )
@@ -136,7 +135,8 @@ max_distance = 600.0
 attenuation = 1.68179
 
 [node name="PowerUpSpawner" parent="." instance=ExtResource( 17 )]
-powerUpProbability = 0.02
+scale = Vector2( 1.00082, 1 )
+Enabled = false
 
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0

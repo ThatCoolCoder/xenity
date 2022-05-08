@@ -108,7 +108,7 @@ crumbleEffect = ExtResource( 4 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 4 )
 animation = "growing"
-frame = 1
+frame = 5
 speed_scale = 1.5
 playing = true
 centered = false
@@ -121,5 +121,10 @@ disabled = true
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 8, 8 )
 scale = Vector2( 0.8, 0.8 )
+
+[node name="GrowthTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
