@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Godot;
-class VariableQualityParticles : CPUParticles2D
+public class VariableQualityParticles : CPUParticles2D
 {
     // Particle effect that can change its amount of particles to improve performance on low-end computers
 
@@ -23,5 +23,6 @@ class VariableQualityParticles : CPUParticles2D
                 Amount = fullQualityAmount;
                 break;
         }
+        base._Ready();
     }
 }

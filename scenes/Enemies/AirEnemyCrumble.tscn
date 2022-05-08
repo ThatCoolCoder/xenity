@@ -25,6 +25,8 @@ angle_random = 1.0
 scale_amount = 2.0
 color = Color( 1, 1, 1, 0.309804 )
 script = ExtResource( 1 )
+lowQualityAmount = 10
+fullQualityAmount = 30
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )

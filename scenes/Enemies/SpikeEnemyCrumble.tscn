@@ -28,6 +28,8 @@ damping = 18.9
 angle = 180.0
 angle_random = 1.0
 script = ExtResource( 2 )
+lowQualityAmount = 3
+fullQualityAmount = 10
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
