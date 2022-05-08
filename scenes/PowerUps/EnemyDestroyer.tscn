@@ -18,7 +18,7 @@ position = Vector2( 0.0802879, 2.3065 )
 scale = Vector2( 0.987729, 1.07962 )
 
 [node name="Timer" parent="." index="2"]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="Sprite" parent="." index="3"]

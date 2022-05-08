@@ -136,7 +136,7 @@ max_distance = 600.0
 attenuation = 1.68179
 
 [node name="PowerUpSpawner" parent="." instance=ExtResource( 17 )]
-powerUpProbability = 0.002
+powerUpProbability = 0.02
 
 [node name="WorldCreator" parent="." instance=ExtResource( 4 )]
 startPosition = 1024.0

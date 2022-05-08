@@ -33,6 +33,8 @@ public class DeleteWhenFinished : Node2D
 					return player.Playing;
 				case AudioStreamPlayer2D player:
 					return player.Playing;
+				case AnimationPlayer player:
+					return player.IsPlaying();
 				default:
 					GD.PrintErr($"Unexpected type: {x.GetType()}");
 					return false;

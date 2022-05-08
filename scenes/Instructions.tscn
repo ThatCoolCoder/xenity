@@ -136,8 +136,8 @@ margin_right = 508.0
 margin_bottom = 346.0
 custom_fonts/normal_font = ExtResource( 8 )
 bbcode_enabled = true
-bbcode_text = "Pick up bombs [img=40]res://art/bomb_temp.png[/img] to destroy enemies"
-text = "Pick up bombs  to destroy enemies"
+bbcode_text = "Bomb power-ups [img=40]res://art/bomb_temp.png[/img]destroy enemies"
+text = "Bomb power-ups destroy enemies"
 
 [node name="StartInstructions" type="Label" parent="."]
 margin_left = 194.0

@@ -11,11 +11,12 @@ public class AfterDieHUD : Control
 	private List<string> hints = new List<string>()
 	{
 		"Changing direction regularly makes it harder to predict your movement",
-		"Sometimes you need to go backwards briefly to evade the spikes",
+		"Sometimes you need to briefly go backwards to evade the spikes",
 		"You will survive a lot longer if you don't touch the enemies",
 		"You can press R to restart quickly",
 		"You can also play the game through a joystick or controller",
-		"Getting bad performance? Try turning down the particle settings in the options menu",
+		"You can disable oscillating music in the options menu",
+		"Getting low FPS? Try turning down the particle settings in the options menu",
 		"This game isn't meant to be easy",
 	};
 	
