@@ -20,6 +20,8 @@ public class WorldSlab : StaticBody2D
 
 	public override void _Process(float delta)
 	{
+		// Update sizes of children from own size
+
 		((ShaderMaterial) sprite.Material).SetShaderParam("sprite_size", Size);
 
 		var colliderRect = new RectangleShape2D();
@@ -28,13 +30,15 @@ public class WorldSlab : StaticBody2D
 		collider.Shape = colliderRect;
 
 		// To make the rect the correct size, we should use Size / 2 in the line below
-		// But we want a bit of time before the rects disappear so make it twice as big
+		// But we want a bit of time before the rects disappear (in case you walk backwards) so make it twice as big
 		visibilityNotifier.Rect = new Rect2(visibilityNotifier.Rect.Position, Size);
 
 	}
 
 	private void _on_VisibilityNotifier2D_screen_exited()
 	{
+		// Delete when off screen
+
 		QueueFree();
 	}
 

@@ -3,6 +3,9 @@ using Godot;
 
 public class AbstractPowerUp : Area2D
 {
+	// Abstract class representing an object in the world that can be picked up and
+	// help the player some way
+
 	[Export] private PackedScene pickUpEffect; // effect played when picked up
 	private bool activated;
 	protected bool deleteOnDeactivate = true;

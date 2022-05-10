@@ -3,6 +3,8 @@ using Godot;
 
 public class EnemyDestroyer : TimedPowerUp
 {
+	// Power up that destroys all enemies for a certain length of time
+
 	protected new bool deleteOnDeactivate = true;
 	
 	protected override void WhileActivated(float delta)

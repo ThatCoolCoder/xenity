@@ -4,6 +4,8 @@ using Godot;
 
 public class PowerUpSpawner : Node2D
 {
+	// Randomly spawns power-ups on the right of the screen.
+
 	[Export] public bool Enabled = true;
 	[Export] private float powerUpProbability = 0.0015f;
 	[Export] private float powerUpXOffset = 200; // spawns power ups this far past right side of viewport

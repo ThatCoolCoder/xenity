@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using Godot;
 public class VariableQualityParticles : CPUParticles2D
 {
-    // Particle effect that can change its amount of particles to improve performance on low-end computers
+    // Particle effect that can change its amount of particles to improve performance on low-end computers.
 
     // A dictionary would be a cleaner way of doing this but dictionaries don't work well
-    // in the godot editor ui.
+    // in the godot editor UI.
     [Export] private int lowQualityAmount;
     [Export] private int fullQualityAmount;
 

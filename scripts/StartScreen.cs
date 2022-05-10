@@ -3,6 +3,8 @@ using System;
 
 public class StartScreen : Node2D
 {
+	// Start screen/title screen showing game name, credits and options
+	
 	[Export] private string moreProjectsUrl;
 	private AnimationPlayer animationPlayer;
 	private ParticleQualitySelector particleQualitySelector;
@@ -25,6 +27,8 @@ public class StartScreen : Node2D
 
 	private void UpdateOptionsFromUI()
 	{
+		// Save options
+
 		if (finishedSetup)
 		{
 			GameOptions.Current.MovingMusicEnabled = movingMusicButton.Pressed;
@@ -36,11 +40,15 @@ public class StartScreen : Node2D
 
 	private void _on_Button_pressed()
 	{
+		// Start game when start button clicked 
+
 		GetTree().ChangeScene("res://scenes/Main.tscn");
 	}
 
 	private void _on_LinkButton_pressed()
 	{
+		// Open link when "More Projects" clicked
+		
 		OS.ShellOpen(moreProjectsUrl);
 	}
 

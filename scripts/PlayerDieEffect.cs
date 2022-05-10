@@ -3,6 +3,8 @@ using System;
 
 public class PlayerDieEffect : Node2D
 {
+	// Why cannot particles autostart in godot?
+
 	private CPUParticles2D particles1;
 	private CPUParticles2D particles2;
 	

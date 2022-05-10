@@ -5,6 +5,8 @@ using Godot;
 
 public static class Utils
 {
+	// Miscellanious utility functions
+	
 	private static Random random = new Random();
 
 	public static float ConvergeValue(float value, float target, float increment)

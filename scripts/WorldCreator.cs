@@ -10,7 +10,7 @@ public class WorldCreator : Node2D
 	[Export] private float startPosition; // Generate world only after this position
 
 	// Dictionary of world section builder to relative probability of it being chosen,
-	// values set in _Ready()
+	// values set in _Ready() due to C# weirdness
 	private Dictionary<Action, float> builders = new Dictionary<Action, float>();
 	private float lastWorldSlabEnd;
 	private float lastFloorHeight = 300;
@@ -58,6 +58,8 @@ public class WorldCreator : Node2D
 
 	private void AddWorldSlab(PackedScene slabType, Vector2 position, Vector2 size)
 	{
+		// Shorthand to instance a rectangular slab of world
+
 		var slab = (WorldSlab) slabType.Instance();
 		slab.Size = size;
 		slab.GlobalPosition = position;
