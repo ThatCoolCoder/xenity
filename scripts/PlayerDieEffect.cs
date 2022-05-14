@@ -3,7 +3,7 @@ using System;
 
 public class PlayerDieEffect : Node2D
 {
-	// Why cannot particles autostart in godot?
+	// Why can't particles autostart by themselves in godot?
 
 	private CPUParticles2D particles1;
 	private CPUParticles2D particles2;

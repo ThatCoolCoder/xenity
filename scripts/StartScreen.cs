@@ -52,6 +52,8 @@ public class StartScreen : Node2D
 		OS.ShellOpen(moreProjectsUrl);
 	}
 
+
+	// Transitions between different screens.
 	private void _on_OptionsButton_pressed()
 	{
 		animationPlayer.Play("show_options");
@@ -72,7 +74,9 @@ public class StartScreen : Node2D
 		animationPlayer.Play("hide_credits");
 	}
 
+	// Update this setting in real time when clicked
 	private void _on_MovingMusicCheckButton_toggled(bool button_pressed) => UpdateOptionsFromUI();
+
 	private void _on_CreditsText_meta_clicked(string meta)
 	{
 		// Open link when clicked in credits menu

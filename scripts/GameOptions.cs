@@ -12,6 +12,9 @@ public enum ParticleQuality
 
 public class GameOptions
 {
+    // User settings system for the game
+    // Instance members are the actual options, static members deal with saving/loading/general managing
+
     public bool MovingMusicEnabled { get; set; } = true;
     public ParticleQuality ParticleQuality { get; set; } = ParticleQuality.Full;
 

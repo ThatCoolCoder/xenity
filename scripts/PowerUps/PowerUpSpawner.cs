@@ -32,7 +32,6 @@ public class PowerUpSpawner : Node2D
 		{
 			// Calculate power up position, mainly using raycast to find passage top and bottom
 
-
 			var rightOfScreen = (GetViewportTransform().AffineInverse() * GetViewportRect().Size).x;
 
 			// Cast downward

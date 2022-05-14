@@ -6,6 +6,7 @@ public class ResumingAudio : AudioStreamPlayer2D
 {
 	// Audio that resumes playing at the same spot even after switching scenes
 	// Add an audio stream player in each scene with this as the script.
+	// Can remember positions in multiple pieces of audio, use profileName to separate.
 	// Recommended settings for the player are:
 	// - same audio stream for each
 	// - autoplay or playing on
